@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4fc8d992a7edac7248c36fb8a2110ee03df8950532c2c568ff1cb4b042d4d089",
+  "claims": [
+    {
+      "id": "claim_58b0db4467d64b2d9ed47a77622e8b59",
+      "statement": "PointInTimeStamp과 시점 검증 함수(assert_no_lookahead, filter_pit_records)는 모든 타임스탬프가 timezone-aware인지 검사하고 event_ts <= published_ts <= available_ts 및 available_ts <= as_of_ts 불변식을 위반하면 PointInTimeError를 발생시킵니다.",
+      "evidence": [
+        {
+          "resource": "repo://src/zerostreet_schema/pit.py#L16-L46",
+          "version": "repo-lines-v1:sha256:13bb6bae19ae0ee8ce6c1af0e0d7b2999f53ac4adf1f27ae89dc7f5fbc78d41c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4NzJkNGQ0MTIyM2M4MWNmZTFmNzYzNzA4YzRjYjgzMDI0OWQ5OGNjN2NiYWE3YzY4MWU3ZTFjYjQ1ZWIwOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYWIwOTBiY2QxNjIwZmE2MmVhZWUxNTdhNzRmY2E2MzVhYTI5ZTEyY2JmZmQ2MThiNTc5MmQ4N2JjMDNhM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzMzUxZDc4MDE4YTVmYjllMjZlOTNmNGM2YWRkZjkzOGJhNGI0ZmY2YWZkY2I5ZDA5NjU3ZTg5Mjg3NDcyNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyZGE4NTg0NzEwNGY3YmM2OWE3NjViODk4YTllNzM2YzE4MGU1MjNhZDQ5NzMyNWNkYTExYWUwZWM2MGEyZDYifQ"
+        },
+        {
+          "resource": "repo://src/zerostreet_schema/pit.py#L49-L77",
+          "version": "repo-lines-v1:sha256:26848e97e2f8e59a59b3c139813c9d9f97e4856040faa9d931c483360992810d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MDY3MTc4MDFmNjViYmQ0ZjZiNTNhYjFlYThlNGYzNjUzYzk2MGFhNGE3MTMzZDFlNTA1YzhlMzQzM2I4MzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlN2I0OTNkZGFmYWNiMGFjYWZmOTNjYzMyNzYwNDdhYWZhYzIwYzAxYWRhNGM0MTY4ODQ1ZTNmMDEwZjVhMzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNTMwZWRlNGYzZTg4MmQ2ZTg1ZTllNmE3N2JiYTI5NTk5OTk3MWU2NTk5NGU0ZTA0MWJjMDAzYjE1NzhkMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d7035c6583364fd281db93f9eef88fa7",
+      "statement": "allowed_embedding_dims는 SubscriptionTier별로 developer({0, 32}), sovereign_pro/founding_100({0, 32, 128}), alpha_ultra({0, 32, 128, 256}) MRL 차원만 허용하며 AllowedDataSource로 재배포 적법 원천 소스를 제한합니다.",
+      "evidence": [
+        {
+          "resource": "repo://src/zerostreet_schema/enums.py#L6-L38",
+          "version": "repo-lines-v1:sha256:8c4d60e9c164d34be659225586db1950cf2555db2b09910b12f338953e057909:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5MmFiZWI5Y2ZmNWM0NzdkYmVjNzE4NWVhY2M0MGI0ZDI3MGMwYTEzNWFmM2Y3N2YxZmE1ZmE2MzA4MmUzNmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhYzcyNTRlNDlmMzZiYjEwY2JiYzVhYmI2MWEzOTgwNDA3OTU1NTQ3ZDRiY2MzYmVjOGQxNjQ1NzQ1MTA2MTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzMjZiNjg5ZDEzNjY5NGYyM2VjMDk5ZTk4Zjc5NmYxNWNjMmUzNmZmMDMyOWJmYWI1NWY4NDZlNmFlOGU5YjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlNDBmYzliZGM4NzVjMDZjYzJkOTE5YTM5NTUyMWJjOGE2ZjA0M2I5NzY4MWYyOWU4OGZiZThmZjRjZDY1ZWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_273f804f12f14c878c93b7fd1dac2fc4",
+      "statement": "MultimodalFeatureBatch는 티어별 허용 embedding_dim 일치 여부, 모든 항목과 내부 PublicFilingItem의 시점 누수 여부, 그리고 비블랙아웃(is_blackout=False) 항목의 임베딩 길이 및 유한 실수 여부를 일괄 검증합니다.",
+      "evidence": [
+        {
+          "resource": "repo://src/zerostreet_schema/multimodal.py#L68-L141",
+          "version": "repo-lines-v1:sha256:e1703ce17786870d2d21ec1f87db967422d979ae7b284bfb0eb56b318be7fdc9:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjYWU2YmZiMTM5OTQ1NGFlMmNjNTUxM2VlNGQwYWZhYTg0YjE0NDA5MTA1N2Y2OWRhNzA2M2MyOTMwYThhNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYWIwOTBiY2QxNjIwZmE2MmVhZWUxNTdhNzRmY2E2MzVhYTI5ZTEyY2JmZmQ2MThiNTc5MmQ4N2JjMDNhM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2OWRiMWQ1MWYyYmY4MGJkNzE3ODNlZDI4NzRmYTM3N2FiNDEzNjI2Nzg2NzhlYWU4YmFkOTFmZTM0MDUwOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-21T17:03:53.516Z"
+  }
+}

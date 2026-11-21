@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/pit-and-multimodal-contracts.md": {
+      "pageVersion": "sha256:4fc8d992a7edac7248c36fb8a2110ee03df8950532c2c568ff1cb4b042d4d089",
+      "completedBy": "antigravity",
+      "completedRunId": "ea77e8a8-8b46-485d-9dc0-d85af8c62d58",
+      "gitHead": "3e5c4615f49a59edb9b59c416c6471f7d8e5be7c",
+      "sourceFingerprint": "sha256:e4c86fc07d58348489e817cfe439e1c6c6930ee3cf54d9e99ae9b30569b2db75"
+    },
+    "/openwiki/architecture/policy-and-telemetry-contracts.md": {
+      "pageVersion": "sha256:353c6cab4e74f0d8b43d6cb6ba1ac7d1a20869998ad5ce1d3cfc69883fa0f5a5",
+      "completedBy": "antigravity",
+      "completedRunId": "ea77e8a8-8b46-485d-9dc0-d85af8c62d58",
+      "gitHead": "3e5c4615f49a59edb9b59c416c6471f7d8e5be7c",
+      "sourceFingerprint": "sha256:e4c86fc07d58348489e817cfe439e1c6c6930ee3cf54d9e99ae9b30569b2db75"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:574eac33afbfaeaa53a90df8fcedf2881f8ff82d0d1f15bd75e5e32c79ebbf22",
+      "completedBy": "antigravity",
+      "completedRunId": "ea77e8a8-8b46-485d-9dc0-d85af8c62d58",
+      "gitHead": "3e5c4615f49a59edb9b59c416c6471f7d8e5be7c",
+      "sourceFingerprint": "sha256:e4c86fc07d58348489e817cfe439e1c6c6930ee3cf54d9e99ae9b30569b2db75"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:574eac33afbfaeaa53a90df8fcedf2881f8ff82d0d1f15bd75e5e32c79ebbf22",
+  "claims": [
+    {
+      "id": "claim_d1be1b574c044bc2ba68d41d04618545",
+      "statement": "zerostreet-schema는 Python 3.11 이상과 hatchling 빌드 백엔드를 사용하며 pydantic, loguru 런타임 의존성과 pytest, ruff dev 의존성 그룹으로 구성됩니다.",
+      "evidence": [
+        {
+          "resource": "repo://pyproject.toml#L1-L32",
+          "version": "repo-lines-v1:sha256:78908451b9f081dcacd76de5378b557433837ca19a0f7b954d128ae5c81f58ae:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0NTY5OTQ2YWM5YmJlN2NiMmNkZWMzZjhiZWNmMzQzNzUwYzU4YjliMzIxZWMyMTk1YmZiYWFiMmFhOGM0YmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3OGM5Yzc5YmZhNDlhOGNiMDg5MjAyMjJmYzcwODcyYTNjMjM1MzcwNDViMDE0ZThjNjQ1OTY4ODEwYTY3OGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_56d5996919c944eda2b0b68d9bf504cd",
+      "statement": "패키지 루트 __init__.py는 enums, pit, multimodal, policy, telemetry 모듈의 모든 핵심 계약 심볼과 검증 함수를 __all__로 재노출합니다.",
+      "evidence": [
+        {
+          "resource": "repo://src/zerostreet_schema/__init__.py#L1-L68",
+          "version": "repo-lines-v1:sha256:02231ed000ba01d6d2721645f1be107eaedeec3b47c032ffb0c411a0c00333ca:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhMzQzODc2NTkwNDZmZjBjOTJjZGNlNzcwZTI2M2VhMmIwNDIxMDdmM2VjZjU4NTY2YzA1YWMxOGQ5NDNlNDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.2",
+    "at": "2026-11-21T17:03:53.516Z"
+  }
+}
