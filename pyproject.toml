@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "zerostreet-schema"
-version = "0.1.0"
+version = "0.2.0"
 description = "ZeroStreet Point-in-Time multimodal data, policy configuration, RunTrace, and ThesisManifest Pydantic v2 contracts"
 readme = "README.md"
 license = { text = "MIT" }

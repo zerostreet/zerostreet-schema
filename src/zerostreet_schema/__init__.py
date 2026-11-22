@@ -43,7 +43,7 @@ from zerostreet_schema.telemetry import (
     ThesisManifest,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "FORBIDDEN_SECRET_FIELDS",
