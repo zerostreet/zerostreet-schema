@@ -1,19 +1,19 @@
-# OpenWiki Repository Documentation Mandate (Bilingual EN + KO & Business Context)
+# OpenWiki 저장소 문서 작성 원칙 (한국어 중심 · 소비자 관점 · 비번역투)
 
-All OpenWiki documentation runs (`init`, `chat`, and scheduled `--update`) in this repository MUST obey the following rules strictly:
+이 저장소의 모든 OpenWiki 생성 및 갱신(`init`, `chat`, `--update`) 작업은 아래 4가지 원칙을 반드시 지켜야 합니다.
 
-1. **Mandatory Bilingual Output (English First, Then Korean)**:
-   - Every wiki page (`openwiki/**/*.md`, excluding generated `index.md`) MUST contain complete, synchronized documentation in **both English and Korean**.
-   - Structure every section, page `title` (`<English Title> / <한국어 제목>`), `description` (`<English summary> <한국어 요약>`), table, and prose block with **English first, immediately followed by the equivalent Korean translation**.
-   - Keep code identifiers, file paths, CLI commands, URLs, and fenced code blocks unchanged across both languages.
-   - Always propagate this bilingual requirement AND the relative-link requirement into every page job's `instructions` array during planning.
+1. **한국어 중심 · 자연스러운 비번역투 작성 (Korean-Primary & Zero-Translationese)**:
+   - 자동 생성되는 `index.md`를 제외한 모든 위키 페이지(`openwiki/**/*.md`)는 **자연스럽고 친절한 한국어 단일 언어**로 작성합니다. 같은 문장을 영어로 나란히 중복 표기하지 마십시오.
+   - `title`과 `description` 프론트매터도 순수 한국어 중심으로 간결하게 작성하되, 클래스명·함수명·API 경로·CLI 명령 등 고유한 코드 식별자는 원문 그대로 정확히 표기합니다.
+   - 영어 직역투("~에 의해 검증된다", "~하는 것이 가능하다")를 피하고, 읽는 사람이 바로 이해할 수 있는 능동형 한국어로 작성합니다.
 
-2. **Business Role & Value Proposition First**:
-   - `openwiki/quickstart.md` (and any introductory overview page) MUST open with a dedicated **`## Business Role & Value Proposition / 비즈니스 역할 및 가치`** section explaining this repository's commercial, GTM, and regulatory role in the ZeroStreet (`주식회사 제로스트리트`) B2A ecosystem—before diving into modules and schemas.
+2. **소비자 관점의 필요성 최우선 (`## 왜 이 프로젝트가 필요한가요? (비즈니스 역할 및 소비자 가치)`)**:
+   - `openwiki/quickstart.md`는 `# 제목` 바로 아래에 **`## 왜 이 프로젝트가 필요한가요? (비즈니스 역할 및 소비자 가치)`** 섹션을 가장 먼저 배치해, 투자자와 개발자가 왜 시점 검증과 공통 계약이 필요한지 직관적으로 이해할 수 있게 설명합니다.
 
-3. **Relative Markdown Links Only**:
-   - Every internal link to another OpenWiki page or repository file MUST be a relative path (e.g., `./architecture/pit-and-multimodal-contracts.md`, `../quickstart.md`, `../src/zerostreet_schema/pit.py`).
-   - NEVER use root-absolute `/openwiki/...` links in Markdown destinations.
+3. **저장소 내부 상대 경로 링크만 사용 (Intra-Repo Relative Links Only) 및 안전한 Mermaid**:
+   - 위키 내 링크는 반드시 **같은 저장소 안을 가리키는 상대 경로**만 사용합니다 (예: `./architecture/pit-and-multimodal-contracts.md`, `../quickstart.md`, `../src/zerostreet_schema/pit.py`).
+   - `/openwiki/...` 루트 절대 경로나 바깥 저장소로 나가는 상대 링크를 절대 쓰지 마십시오. 형제 저장소는 백틱(예: `` `zerosteer` ``)으로 적습니다.
+   - Mermaid 도식의 모든 노드 라벨은 큰따옴표(`id["..."]`)로 감싸고, `->`, `<=`, `<`, `>`, HTML 태그(`<br/>` 등)를 라벨 안에 넣지 마십시오.
 
-4. **Strict Repository Grounding & Claims**:
-   - Cite every Claim strictly with `repo://<path>#L<start>-L<end>` verified against current files, and keep code identifiers consistent across English and Korean prose.
+4. **소스코드 실측 기반 근거(`Claims`) 검증**:
+   - 모든 Claim의 근거는 `repo://<path>#L<start>-L<end>` 형식으로 실제 파일 라인 범위와 정확히 일치해야 합니다.

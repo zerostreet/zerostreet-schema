@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # 파일
 
-- [zerostreet-schema Quickstart & Business Overview / zerostreet-schema 빠른 시작 및 비즈니스 개요](quickstart.md) - Introduces the Layer 0 business role, package structure, local validation, and OpenWiki routing map for zerostreet-schema. ZeroStreet 생태계의 표준 Pydantic v2 계약 패키지인 zerostreet-schema의 비즈니스 역할, 구조, 검증 절차 및 문서 맵을 안내합니다.
+- [zerostreet-schema v0.2.0 개요 및 빠른 시작](quickstart.md) - ZeroStreet 생태계 전체가 공유하는 Layer 0 Pydantic v2 데이터 계약(시점 무결성, 티어 차원, 정책, RunTrace)의 소비자 가치와 구조를 한국어로 안내합니다.
 
 # 디렉터리
 

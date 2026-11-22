@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:c3e808c40a053453b36b271ef40708898f3973d60d931263123fa9040bdbae3d",
+  "pageVersion": "sha256:a82ce56e164ef0d018e01a5b8779f435ece68ad6fe3f417493999a7cd85efe5a",
   "claims": [
     {
       "id": "claim_d1be1b574c044bc2ba68d41d04618545",
-      "statement": "zerostreet-schema는 Python 3.11 이상과 hatchling 빌드 백엔드를 사용하며 pydantic, loguru 런타임 의존성과 pytest, ruff dev 의존성 그룹으로 구성됩니다.",
+      "statement": "zerostreet-schema v0.2.0은 Python 3.11 이상과 hatchling 빌드 백엔드를 사용하며 pydantic>=2.7.0, loguru>=0.7.2 런타임 의존성과 pytest, ruff dev 의존성 그룹으로 구성됩니다.",
       "evidence": [
         {
           "resource": "repo://pyproject.toml#L1-L32",
-          "version": "repo-lines-v1:sha256:78908451b9f081dcacd76de5378b557433837ca19a0f7b954d128ae5c81f58ae:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0NTY5OTQ2YWM5YmJlN2NiMmNkZWMzZjhiZWNmMzQzNzUwYzU4YjliMzIxZWMyMTk1YmZiYWFiMmFhOGM0YmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3OGM5Yzc5YmZhNDlhOGNiMDg5MjAyMjJmYzcwODcyYTNjMjM1MzcwNDViMDE0ZThjNjQ1OTY4ODEwYTY3OGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "version": "repo-lines-v1:sha256:7249fa99e1521e365ce46cd375f2f537b20fce24b0d636c7e24625eb849bbc55:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0NTY5OTQ2YWM5YmJlN2NiMmNkZWMzZjhiZWNmMzQzNzUwYzU4YjliMzIxZWMyMTk1YmZiYWFiMmFhOGM0YmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3OGM5Yzc5YmZhNDlhOGNiMDg5MjAyMjJmYzcwODcyYTNjMjM1MzcwNDViMDE0ZThjNjQ1OTY4ODEwYTY3OGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
     {
       "id": "claim_56d5996919c944eda2b0b68d9bf504cd",
-      "statement": "The package root __init__.py re-exports all core contract models, EntityType unit helpers, and validators from enums, pit, multimodal, policy, and telemetry via __all__ (zero runtime weights).",
+      "statement": "패키지 루트 __init__.py는 __version__=\"0.2.0\"과 함께 enums, pit, multimodal, policy, telemetry의 모든 공개 계약 모델·EntityType 헬퍼·검증기를 __all__로 내보냅니다(런타임 가중치 0바이트).",
       "evidence": [
         {
           "resource": "repo://src/zerostreet_schema/__init__.py#L1-L79",
-          "version": "repo-lines-v1:sha256:b7acb56aa933b0af5fb6e21b7bc099bd9dc93688c6c8e45d30325c3a1ea2dbec:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5ODViNjQ3MDY3MTAwMDc5OWZiYTBjODM4Yzk3OGJiNTJjY2NjNTRhZjE5MmRjZmFlMzM3Zjg3Zjg3OGE1NTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "version": "repo-lines-v1:sha256:05fec2a94dc580ea4fbc1498ad315d98e91d244ecfb60bcf800653759276db1b:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5ODViNjQ3MDY3MTAwMDc5OWZiYTBjODM4Yzk3OGJiNTJjY2NjNTRhZjE5MmRjZmFlMzM3Zjg3Zjg3OGE1NTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-11-22T09:37:23.020Z"
+    "at": "2026-11-22T12:52:41.987Z"
   }
 }
