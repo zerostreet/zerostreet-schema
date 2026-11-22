@@ -88,7 +88,7 @@ class PolicyCompileRequest(BaseModel):
     user_id: str = Field(min_length=1)
     tier: SubscriptionTier = Field(default=SubscriptionTier.SOVEREIGN_PRO)
     policy_config: UserPolicyConfig
-    backbone_version: str = Field(default="hyperalpha-vla-backbone-v1")
+    backbone_version: str = Field(default="zerosteer-backbone-v1")
     multimodal_tensor_version: str = Field(default="zerolens_v2_mrl")
     compile_steps: int = Field(default=20, ge=1, le=2000)
 

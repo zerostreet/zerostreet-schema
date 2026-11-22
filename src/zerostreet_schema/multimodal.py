@@ -1,6 +1,6 @@
-"""ZeroLens to HyperAlpha-VLA multimodal embedding and compliant source schemas.
+"""ZeroLens to ZeroSteer multimodal embedding and compliant source schemas.
 
-ZeroLens와 HyperAlpha-VLA 간 멀티모달 임베딩 및 적법 원천 데이터 스키마 모듈입니다.
+ZeroLens와 ZeroSteer 간 멀티모달 임베딩 및 적법 원천 데이터 스키마 모듈입니다.
 """
 
 import math
@@ -102,7 +102,7 @@ class AssetEmbeddingItem(BaseModel):
     published_ts: datetime | None = Field(default=None, description="공시/발표 시각")
     available_ts: datetime = Field(description="모델 투입 가능 시각 (tz-aware)")
     is_blackout: bool = Field(
-        default=False, description="True일 경우 Model B DynamicEmbeddingAdapter가 [MASK_SIGNAL] 사용"
+        default=False, description="True일 경우 ZeroSteer DynamicEmbeddingAdapter가 [MASK_SIGNAL] 사용"
     )
     embedding_z_mm: list[float] = Field(default_factory=list, description="MRL 멀티모달 상태 텐서")
     source_data: SourceDataPayload = Field(default_factory=SourceDataPayload)

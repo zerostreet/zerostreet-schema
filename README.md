@@ -1,6 +1,6 @@
 # zerostreet-schema (`Public · MIT · Layer 0`)
 
-Shared Pydantic v2 data contracts and Point-in-Time look-ahead validators for the entire ZeroStreet ecosystem (`HyperAlpha-VLA`, `AlphaGraph`, `AlphaSmith`, `zerostreet-models`, and `ZeroStreet Architect Skills`).
+Shared Pydantic v2 data contracts and Point-in-Time look-ahead validators for the entire ZeroStreet ecosystem (`ZeroSteer`, `AlphaGraph`, `AlphaSmith`, `zerostreet-models`, and `ZeroStreet Architect Skills`).
 
 `주식회사 제로스트리트(ZeroStreet)` 전 계층이 공유하는 **Pydantic v2 표준 데이터 계약 및 Point-in-Time 시점 누수 차단 라이브러리**입니다.
 
@@ -10,7 +10,7 @@ Shared Pydantic v2 data contracts and Point-in-Time look-ahead validators for th
 
 ### English
 
-* **Universal Trust & Billing Boundary (Layer 0)**: Acts as the zero-weight open-source constitution connecting MIT client software (`alphagraph`, `hyperalpha-vla`, `zerostreet-skills`) to ZeroStreet's paid B2A cloud (`alphasmith`, `zerostreet-models`). Every downstream API payload, embedding slice, and telemetry report is schema-validated on the client before crossing network or custody boundaries.
+* **Universal Trust & Billing Boundary (Layer 0)**: Acts as the zero-weight open-source constitution connecting MIT client software (`alphagraph`, `zerosteer`, `zerostreet-skills`) to ZeroStreet's paid B2A cloud (`alphasmith`, `zerostreet-models`). Every downstream API payload, embedding slice, and telemetry report is schema-validated on the client before crossing network or custody boundaries.
 * **MRL Subscription Tier Monetization**: `SubscriptionTier` + `allowed_embedding_dims()` cryptographically/programmatically binds pricing tiers (`developer: 0/32d`, `sovereign_pro & founding_100: 0/32/128d`, `alpha_ultra: 0/32/128/256d`) to Matryoshka Representation Learning (MRL) tensor dimensions, allowing one upstream encoder to monetize progressive signal fidelity.
 * **Regulatory & Institutional Compliance Shield**:
   * **Zero Look-Ahead Integrity**: `PointInTimeStamp` and `assert_no_lookahead()` mathematically separate `event_ts <= published_ts <= available_ts <= as_of_ts`, giving B2A agents and researchers audit-grade protection against future data leakage.
@@ -19,7 +19,7 @@ Shared Pydantic v2 data contracts and Point-in-Time look-ahead validators for th
 
 ### 한국어
 
-* **오픈소스 클라이언트와 유료 클라우드를 잇는 Layer 0 신뢰·과금 표준 계약**: MIT 공개 패키지(`alphagraph`, `hyperalpha-vla`, `zerostreet-skills`)와 유료 컨트롤 플레인(`alphasmith`, `zerostreet-models`) 사이의 단일 진실 공급원(Single Source of Truth)입니다.
+* **오픈소스 클라이언트와 유료 클라우드를 잇는 Layer 0 신뢰·과금 표준 계약**: MIT 공개 패키지(`alphagraph`, `zerosteer`, `zerostreet-skills`)와 유료 컨트롤 플레인(`alphasmith`, `zerostreet-models`) 사이의 단일 진실 공급원(Single Source of Truth)입니다.
 * **MRL 구독 티어 과금 체계 강제**: `SubscriptionTier`와 `allowed_embedding_dims()`가 요금제별(`developer: 0/32d`, `sovereign_pro·founding_100: 0/32/128d`, `alpha_ultra: 0/32/128/256d`) 임베딩 차원을 스키마 단계에서 통제하여, 단일 인코더 기반의 계단식(Tiered) B2A 과금을 가능하게 합니다.
 * **규제·보안 방화벽 내장**:
   * **시점 누수 차단**: `event_ts <= published_ts <= available_ts <= as_of_ts` 3중 타임스탬프 불변식으로 백테스트-실전 괴리를 원천 차단합니다.

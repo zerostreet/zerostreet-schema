@@ -64,9 +64,9 @@ class DaemonStatus(StrEnum):
 
 
 class HorizonMaskMode(StrEnum):
-    """Attention masking modes across multi-horizon portfolio blocks in HyperAlpha-VLA.
+    """Attention masking modes across multi-horizon portfolio blocks in ZeroSteer.
 
-    HyperAlpha-VLA 다기간 포트폴리오 블록 간 어텐션 마스킹 모드입니다.
+    ZeroSteer 다기간 포트폴리오 블록 간 어텐션 마스킹 모드입니다.
     """
 
     BIDIRECTIONAL_PORTFOLIO = "bidirectional_portfolio"
