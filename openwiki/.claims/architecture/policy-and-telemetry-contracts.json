@@ -1,40 +1,40 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:353c6cab4e74f0d8b43d6cb6ba1ac7d1a20869998ad5ce1d3cfc69883fa0f5a5",
+  "pageVersion": "sha256:7868d5070eadd3bc3f3b4432d210afaaed9b4c08dfd89cd8a1940423be6d4ba8",
   "claims": [
     {
       "id": "claim_789744cdd1284c9f89f360476b3d1173",
-      "statement": "RLRewardWeights는 최소 1개 이상의 핵심 수익/리스크 가중치가 0보다 커야 하며 UserPolicyConfig는 최소 2개의 중복 없는 target_universe 심볼을 강제합니다.",
+      "statement": "RLRewardWeights requires at least one core return/risk objective weight strictly greater than 0.0, and UserPolicyConfig enforces at least two unique asset symbols in target_universe.",
       "evidence": [
         {
-          "resource": "repo://src/zerostreet_schema/policy.py#L11-L75",
-          "version": "repo-lines-v1:sha256:b1153d450af4848baba776b5097f331e81e11c929ef3b68847806612a2dd5246:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4NmYwMzA0YzA5OWU4ZDNlNGM0ZGMxZTI3OWMyZmFlMTJkNjVhZjJlYTlmZmU1MTRkMmUwM2ZlNjQwYmU2YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZjJjMjk5MmNmYzA5ZmYwZWE0YjhlODY4ZjNkOGU0NDNiMTI5NTY3Y2Q1NTkzYzQ2NDlkMDMyZmIzZmMxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyMzdmYzdkZjA3NDc3OWJmYTc4MGEzZDVhZGRkNGM3M2MyODhjMjY2MmRjMTUwMjYyZDBhOTgwOWIzMzFkMjAifQ"
+          "resource": "repo://src/zerostreet_schema/policy.py#L14-L93",
+          "version": "repo-lines-v1:sha256:0030cc852d81895737098307cc709457c43335a8b4854d5be4e82604c9ce2c37:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4NmYwMzA0YzA5OWU4ZDNlNGM0ZGMxZTI3OWMyZmFlMTJkNjVhZjJlYTlmZmU1MTRkMmUwM2ZlNjQwYmU2YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkMjYwOGYyNTFjY2Y1OTk2YTgyMTc1ZTYwNjdhZTJlODVmZjVmNjc4NDA0OWZmOTFhMzIxYWY1ZGM0OGM3NTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZjJjMjk5MmNmYzA5ZmYwZWE0YjhlODY4ZjNkOGU0NDNiMTI5NTY3Y2Q1NTkzYzQ2NDlkMDMyZmIzZmMxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllMzgyMGMzZjkzZThkY2ZjNTg4MzQwNmIyZjgwMmExOGVkNTZmMDhiMGQwYzEyZTc5ZjNlMzM3NDYwMWYwY2QifQ"
         }
       ]
     },
     {
       "id": "claim_f490e0edc3b9423abda13dbaf026410d",
-      "statement": "RunTrace는 ConfigDict(extra='forbid'), FORBIDDEN_SECRET_FIELDS 민감 키 검사, 그리고 포트폴리오 비중 합계 1.0001 이하 제약을 통해 계좌번호와 원화 총액 유출을 차단합니다.",
+      "statement": "RunTrace prevents credential and KRW balance leaks via ConfigDict(extra='forbid'), FORBIDDEN_SECRET_FIELDS key checks, and total portfolio weight limits <= 1.0001.",
       "evidence": [
         {
-          "resource": "repo://src/zerostreet_schema/telemetry.py#L11-L63",
-          "version": "repo-lines-v1:sha256:002e0b12524f47ad002dd51f8b0e9064211757e03969f29846748d2c9c627885:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiOWU2MjBmZDlmMDRlMzk1NGEyMjc3MTFmN2NkZmMwMjczYjVkNWI3OWI2YmE0NWI0MjMxZDFiNjAyNzAwZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYWIwOTBiY2QxNjIwZmE2MmVhZWUxNTdhNzRmY2E2MzVhYTI5ZTEyY2JmZmQ2MThiNTc5MmQ4N2JjMDNhM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5ODdlYWIyNzVjMGJiMWZiYmJlYmJjMzlmNGFkMzhkNjVmMTE5NTg0MDU1MDI2ZWQ4NmM5ZDRhOTZkNzIwNTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3NzgwY2ZmYjgzYmYzYzNlYWU5YTU4YjE2YzJjMmU0YWE2Y2I4ZWEzODc0ZGFmYzAyNTFlMGJmOGZjNjg3MWQifQ"
+          "resource": "repo://src/zerostreet_schema/telemetry.py#L11-L70",
+          "version": "repo-lines-v1:sha256:d0e13602a0ff3982aa9b4c535e92db63f0a75032f08f4ad9a92c367c7642663f:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMzg5YjY4YzcwNTgxMTIxYmFiMGVmMzFjNjUxMzA1M2QwMTJlNDU3YWUyZWMzODJhYmJiYTc4MmQ4MzUwMjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwYzA2NGRjMDEyN2VkMTQ3NjM0NTg1ZDdhMzM1ZDFmNGYxODBkYmYzZmU5Njc0MTg2ZDdkZWRlNDYzZTgyZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4MGYwMTA0YjRjMjg3OGFkZmQ3MjgwZWRmYWRkMTEwZjcyZWVlOTliNzkyYjYzMWI4NGMxYmYyMDhlNjVjNTQifQ"
         }
       ]
     },
     {
       "id": "claim_daccda3711704a4ca35988921a26ff55",
-      "statement": "ThesisManifest는 schema_version='2.0'을 기본값으로 사용하며 RunTraceRef, timezone-aware SourceFactsSnapshot, 반론 목록 및 KillCriterion 목록을 구조화합니다.",
+      "statement": "ThesisManifest defaults schema_version to '2.0' and requires RunTraceRef, timezone-aware SourceFactsSnapshot, core facts, adversarial risks, and quantitative KillCriterion items.",
       "evidence": [
         {
-          "resource": "repo://src/zerostreet_schema/telemetry.py#L66-L114",
-          "version": "repo-lines-v1:sha256:d128f019d8b11f253b9778ebbd6b47c7e2226a2e9771d9b7c0c4aff05fa9040b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiZmU1OGM0MzBiM2I2OTFhYTY3YThlNDM3MTBlZjk5NzMxOWUyZTk5MTNiNTQ4ZDk3NmEyY2RhM2E2NTBmMjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYWIwOTBiY2QxNjIwZmE2MmVhZWUxNTdhNzRmY2E2MzVhYTI5ZTEyY2JmZmQ2MThiNTc5MmQ4N2JjMDNhM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNTMwZWRlNGYzZTg4MmQ2ZTg1ZTllNmE3N2JiYTI5NTk5OTk3MWU2NTk5NGU0ZTA0MWJjMDAzYjE1NzhkMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://src/zerostreet_schema/telemetry.py#L72-L132",
+          "version": "repo-lines-v1:sha256:d6dd890ec4c93eb3d7d495f0364ef026619c62185d04702ddc1fb4c128172e45:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiZmU1OGM0MzBiM2I2OTFhYTY3YThlNDM3MTBlZjk5NzMxOWUyZTk5MTNiNTQ4ZDk3NmEyY2RhM2E2NTBmMjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYWIwOTBiY2QxNjIwZmE2MmVhZWUxNTdhNzRmY2E2MzVhYTI5ZTEyY2JmZmQ2MThiNTc5MmQ4N2JjMDNhM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNTMwZWRlNGYzZTg4MmQ2ZTg1ZTllNmE3N2JiYTI5NTk5OTk3MWU2NTk5NGU0ZTA0MWJjMDAzYjE1NzhkMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-11-21T17:03:53.516Z"
+    "at": "2026-11-22T03:39:00.516Z"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:574eac33afbfaeaa53a90df8fcedf2881f8ff82d0d1f15bd75e5e32c79ebbf22",
+  "pageVersion": "sha256:2aab2c2b26ebecd8145453a98a59afa337d6d36c1870f9cbcc3b8bd0cd165b71",
   "claims": [
     {
       "id": "claim_d1be1b574c044bc2ba68d41d04618545",
@@ -14,17 +14,17 @@
     },
     {
       "id": "claim_56d5996919c944eda2b0b68d9bf504cd",
-      "statement": "패키지 루트 __init__.py는 enums, pit, multimodal, policy, telemetry 모듈의 모든 핵심 계약 심볼과 검증 함수를 __all__로 재노출합니다.",
+      "statement": "The package root __init__.py re-exports all core contract models and validators from enums, pit, multimodal, policy, and telemetry via __all__ (zero runtime weights).",
       "evidence": [
         {
-          "resource": "repo://src/zerostreet_schema/__init__.py#L1-L68",
-          "version": "repo-lines-v1:sha256:02231ed000ba01d6d2721645f1be107eaedeec3b47c032ffb0c411a0c00333ca:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhMzQzODc2NTkwNDZmZjBjOTJjZGNlNzcwZTI2M2VhMmIwNDIxMDdmM2VjZjU4NTY2YzA1YWMxOGQ5NDNlNDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://src/zerostreet_schema/__init__.py#L1-L71",
+          "version": "repo-lines-v1:sha256:7a4b09866215e18d26c42f1f065939e981b2a5180660a606ad8e388283db4af4:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5ODViNjQ3MDY3MTAwMDc5OWZiYTBjODM4Yzk3OGJiNTJjY2NjNTRhZjE5MmRjZmFlMzM3Zjg3Zjg3OGE1NTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-11-21T17:03:53.516Z"
+    "at": "2026-11-22T03:39:00.516Z"
   }
 }

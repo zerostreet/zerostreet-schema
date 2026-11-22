@@ -1,11 +1,17 @@
 ---
 type: architecture-contract
-title: Point-in-Time 검증 및 멀티모달 임베딩 스키마
-description: 3중 타임스탬프 기반 시점 누수 차단 불변식과 구독 티어별 Matryoshka 임베딩(z_mm) 및 적법 원천 데이터 계약을 설명합니다.
-tags: [point-in-time, lookahead-bias, multimodal, mrl, pydantic-v2, opendart]
+title: Point-in-Time Validation & Multimodal Contracts / Point-in-Time 검증 및 멀티모달 임베딩 계약
+description: Explains triple-timestamp look-ahead prevention invariants and tier-gated Matryoshka (z_mm) multimodal data contracts. 3중 타임스탬프 기반 시점 누수 차단 불변식과 구독 티어별 Matryoshka 임베딩(z_mm) 및 적법 원천 데이터 계약을 설명합니다.
+tags:
+  - point-in-time
+  - lookahead-bias
+  - multimodal
+  - mrl
+  - pydantic-v2
+  - opendart
 verified:
   - by: openwiki/0.7.2
-    at: 2026-11-21T17:03:53.516Z
+    at: 2026-11-22T03:39:00.516Z
 sources:
   - id: openwiki-source-8b0ea8a07e0fe75e78ef57fa
     resource: repo://src/zerostreet_schema/enums.py
@@ -13,68 +19,74 @@ sources:
     resource: repo://src/zerostreet_schema/multimodal.py
   - id: openwiki-source-6ed392b0a2f19b4525ae93d8
     resource: repo://src/zerostreet_schema/pit.py
-generated: { by: "antigravity", at: "2026-11-21T17:03:53.516Z" }
+generated: { by: "antigravity", at: "2026-11-22T03:39:00.516Z" }
 ---
 
-# Point-in-Time 검증 및 멀티모달 임베딩 스키마
+# Point-in-Time Validation & Multimodal Contracts / Point-in-Time 검증 및 멀티모달 임베딩 계약
 
-`zerostreet-schema`는 ZeroStreet 생태계 전체에서 미래 참조(Look-Ahead Bias)를 차단하고 `AlphaSmith(Model A)`가 생성한 멀티모달 임베딩(`z_mm`)과 적법 원천 데이터를 `HyperAlpha-VLA(Model B)` 및 `AlphaGraph`로 안전하게 전달하기 위한 Pydantic v2 데이터 계약을 정의합니다.
+`zerostreet-schema` defines the shared Pydantic v2 data contracts that block Look-Ahead Bias across the entire ZeroStreet stack and safely transport multimodal embeddings (`z_mm`) plus compliant source data from `zerostreet-models` / `AlphaSmith` (`Model A`) into `HyperAlpha-VLA` (`Model B`) and `AlphaGraph`.
+
+`zerostreet-schema`는 ZeroStreet 생태계 전체에서 미래 참조(Look-Ahead Bias)를 차단하고 `zerostreet-models` / `AlphaSmith`(`Model A`)가 생성한 멀티모달 임베딩(`z_mm`)과 적법 원천 데이터를 `HyperAlpha-VLA`(`Model B`) 및 `AlphaGraph`로 안전하게 전달하기 위한 Pydantic v2 데이터 계약을 정의합니다.
 
 ---
 
-## 1. Point-in-Time 3중 타임스탬프 불변식 (`pit.py`)
+## 1. Triple-Timestamp Point-in-Time Invariant (`pit.py`) / Point-in-Time 3중 타임스탬프 불변식
+
+All time-sensitive fields must be timezone-aware `datetime` objects (`tzinfo` present); naive timestamps immediately raise `PointInTimeError(ValueError)` via `ensure_timezone_aware`.
 
 모든 시점 민감 타임스탬프는 반드시 `tzinfo`가 포함된 timezone-aware `datetime`이어야 하며, 순수(naive) 시각이 들어오면 `ensure_timezone_aware`가 즉시 `PointInTimeError(ValueError)`를 발생시킵니다.
 
 ```text
-event_ts (사건/결산 기준일)  <=  published_ts (외부 공시·발표 시각)  <=  available_ts (모델 투입 가능 시각)  <=  as_of_ts (추론 기준 시각)
+event_ts (event/fiscal period) <= published_ts (public disclosure) <= available_ts (model ingestion) <= as_of_ts (inference cutoff)
 ```
 
-| 구성 요소 | 역할 및 검증 규칙 | 실패 시 동작 |
+| Component / 구성 요소 | Verification Rule / 검증 규칙 | Failure Behavior / 실패 시 동작 |
 | :--- | :--- | :--- |
-| **`PointInTimeStamp`** | `event_ts <= published_ts <= available_ts` 3중 시간 순서 검증 | `PointInTimeError` (`ValidationError` 래핑) |
-| **`assert_no_lookahead`** | 개별 레코드 `available_ts <= as_of_ts` 단언 | `PointInTimeError` 직접 발생 |
-| **`filter_pit_records`** | 배치 내 `available_ts <= as_of_ts` 조건을 만족하는 관측 가능 레코드만 추출 | 미래 레코드 자동 배제 |
+| **`PointInTimeStamp`** | Enforces `event_ts <= published_ts <= available_ts` ordering / 3중 시간 순서 검증 | Raises `PointInTimeError` via Pydantic / `PointInTimeError` 발생 |
+| **`assert_no_lookahead`** | Asserts single-record `available_ts <= as_of_ts` / 개별 레코드 시점 누수 차단 | Raises `PointInTimeError` directly / `PointInTimeError` 직접 발생 |
+| **`filter_pit_records`** | Retains only records with `available_ts <= as_of_ts` / 관측 가능 레코드만 필터링 | Excludes future rows automatically / 미래 레코드 자동 배제 |
 
 ---
 
-## 2. 구독 티어별 MRL 차원 및 원천 데이터 소스 정책 (`enums.py`)
+## 2. Subscription Tier MRL Dimensions & Lawful Sources (`enums.py`) / 구독 티어별 MRL 차원 및 원천 데이터 소스 정책
 
-`SubscriptionTier`에 따라 `allowed_embedding_dims`가 허용하는 Matryoshka Representation Learning(MRL) 임베딩 차원과 재배포 가능한 원천 데이터 소스(`AllowedDataSource`)가 결정됩니다.
+`SubscriptionTier` determines allowed Matryoshka Representation Learning (MRL) dimensions via `allowed_embedding_dims()`, while `AllowedDataSource` restricts disclosures and macro inputs to legally redistributable sources.
 
-| 구독 티어 (`SubscriptionTier`) | 허용 `embedding_dim` | 비고 |
+`SubscriptionTier`에 따라 `allowed_embedding_dims`가 허용하는 MRL 임베딩 차원이 결정되며, `AllowedDataSource`는 재배포 적법성이 검증된 공공·자체 가공 원천 데이터 소스만 허용합니다.
+
+| Tier (`SubscriptionTier`) | Allowed `embedding_dim` | Commercial Purpose / 상업적 역할 |
 | :--- | :--- | :--- |
-| **`developer`** | `{0, 32}` | 로컬 수치(OHLCV) 블랙아웃 모드(`0`) 또는 기본 32차원 요약 |
-| **`sovereign_pro`** | `{0, 32, 128}` | 중차원 멀티모달 임베딩(`128d`) + 공시/AI 팩트 |
-| **`founding_100`** | `{0, 32, 128}` | Sovereign Pro와 동일한 128차원 권한 |
-| **`alpha_ultra`** | `{0, 32, 128, 256}` | 풀 256차원 멀티모달 임베딩 및 거시/선물 데이터 |
-
-재배포 및 저작권 리스크 차단을 위해 `PublicFilingItem` 및 `MacroContextPayload`는 `AllowedDataSource`(`OpenDART`, `SEC_EDGAR`, `BOK_ECOS`, `FRED`, `BOK_ECOS_FRED`, `PUBLIC_EXCHANGE`, `AI_EXTRACTED_FACTS`)만 허용합니다.
+| **`developer`** | `{0, 32}` | Local OHLCV blackout (`0d`) or lightweight `32d` summary / 로컬 수치 폴백 또는 경량 32차원 |
+| **`sovereign_pro`** | `{0, 32, 128}` | Mid-dim multimodal embedding (`128d`) + disclosures & AI facts / 중차원 128d + 공시·AI 팩트 |
+| **`founding_100`** | `{0, 32, 128}` | Early-adopter sovereign bundle matching `128d` quota / 초기 100인 전용 128차원 권한 |
+| **`alpha_ultra`** | `{0, 32, 128, 256}` | Full `256d` embedding capacity + global macro context / 풀 256차원 임베딩 및 거시 데이터 |
 
 ---
 
-## 3. 멀티모달 배치 계약 (`multimodal.py`)
+## 3. Multimodal Batch Contract (`multimodal.py`) / 멀티모달 배치 계약
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-    BATCH["MultimodalFeatureBatch (as_of_ts, tier, embedding_dim)"] --> TIER_CHK["allowed_embedding_dims(tier) 검증"]
-    BATCH --> ITEMS["AssetEmbeddingItem[] 순회"]
-    ITEMS --> PIT_ITEM["assert_no_lookahead(item.available_ts, as_of_ts)"]
-    ITEMS --> PIT_FILING["PublicFilingItem별 available_ts/published_ts <= as_of_ts"]
-    ITEMS --> BLACKOUT{"is_blackout 여부"}
-    BLACKOUT -- "False" --> DIM_CHK["len(embedding_z_mm) == embedding_dim 및 유한 실수 검증"]
-    BLACKOUT -- "True" --> PASS["빈 벡터 허용 (Model B [MASK_SIGNAL] 폴백)"]
+    BATCH["MultimodalFeatureBatch (as_of_ts, tier, embedding_dim)"] --> TIER_CHK["Check allowed_embedding_dims(tier)"]
+    BATCH --> ITEMS["Inspect each AssetEmbeddingItem"]
+    ITEMS --> PIT_ITEM["Verify item available_ts lte as_of_ts"]
+    ITEMS --> PIT_FILING["Verify nested PublicFilingItem timestamps"]
+    ITEMS --> BLACKOUT{"is_blackout flag"}
+    BLACKOUT -- "False" --> DIM_CHK["Enforce len(z_mm) == embedding_dim and finite"]
+    BLACKOUT -- "True" --> PASS["Allow empty vector (Model B MASK_SIGNAL fallback)"]
 ```
 
-- **결측(Blackout) 안전성**: `AssetEmbeddingItem.is_blackout=True`이면 `embedding_z_mm`가 빈 리스트여도 유효하며, `HyperAlpha-VLA`의 `DynamicEmbeddingAdapter`가 학습된 `[MASK_SIGNAL]` 토큰으로 폴백합니다. 반면 `is_blackout=False`이면 `len(embedding_z_mm) == embedding_dim`과 모든 원소의 유한성(`math.isfinite`)을 엄격히 강제합니다.
-- **중첩 공시 시점 검증**: `MultimodalFeatureBatch`는 최상위 `item.available_ts`뿐만 아니라 내부 `source_data.public_filings`의 각 공시(`filing.available_ts or filing.published_ts`)까지 `as_of_ts` 이전인지 재귀적으로 검사합니다.
+* **Blackout Resilience / 결측 안전성**: When `AssetEmbeddingItem.is_blackout=True`, an empty `embedding_z_mm` vector is accepted so `HyperAlpha-VLA`'s `DynamicEmbeddingAdapter` falls back to its learned `[MASK_SIGNAL]` token; when `is_blackout=False`, `MultimodalFeatureBatch` strictly enforces exact dimension length and `math.isfinite` on every scalar. (`is_blackout=True`이면 빈 벡터를 허용해 `Model B`가 `[MASK_SIGNAL]`로 대체하며, `False`이면 정확한 차원 일치와 유한 실수 여부를 검증합니다.)
+* **Recursive Disclosure Check / 중첩 공시 검증**: Validates both top-level `item.available_ts` and nested `PublicFilingItem` timestamps against `as_of_ts`. (상위 항목뿐 아니라 내부 `public_filings`의 공시 시각까지 `as_of_ts` 이전인지 재귀 검증합니다.)
 
 ---
 
-## 4. 단위 테스트 검증 범위
+## 4. Unit Test Verification / 단위 테스트 검증 범위
 
-<!-- openwiki: broken internal link [../tests/test_pit.py] file "../tests/test_pit.py" does not exist. Fix the href or restore the target, then delete this comment. -->
-- [test_pit.py](../tests/test_pit.py): 3중 타임스탬프 순서 역전 및 naive datetime 거부, `assert_no_lookahead` 경계 조건, `filter_pit_records` 필터링을 검증합니다.
-<!-- openwiki: broken internal link [../tests/test_multimodal.py] file "../tests/test_multimodal.py" does not exist. Fix the href or restore the target, then delete this comment. -->
-- [test_multimodal.py](../tests/test_multimodal.py): 티어-차원 불일치(`developer` + `128d`) 차단, 미래 `available_ts` 배치 차단, `is_blackout=True` 허용 및 `NaN` 원소 차단을 검증합니다.
+* [test_pit.py](../../tests/test_pit.py): Verifies chronological violation rejection, naive datetime rejection, `assert_no_lookahead`, and `filter_pit_records`. (3중 타임스탬프 역전·naive 시각 거부 및 시점 필터링을 검증합니다.)
+* [test_multimodal.py](../../tests/test_multimodal.py): Verifies tier-dimension mismatch rejection (`developer` + `128d`), future `available_ts` batch rejection, blackout fallback, and `NaN` guards. (티어 차원 불일치 차단, 미래 배치 거부, 블랙아웃 및 비유한 값 차단을 검증합니다.)
+
+## Related Documentation / 관련 문서
+
+* [zerostreet-schema Quickstart & Business Overview / 빠른 시작 및 비즈니스 개요](../quickstart.md)
+* [Policy Compilation & Zero-Trust Telemetry Contracts / 정책 컴파일 및 텔레메트리 계약](./policy-and-telemetry-contracts.md)

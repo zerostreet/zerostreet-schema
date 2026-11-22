@@ -2,25 +2,25 @@
   "schemaVersion": 1,
   "pages": {
     "/openwiki/architecture/pit-and-multimodal-contracts.md": {
-      "pageVersion": "sha256:4fc8d992a7edac7248c36fb8a2110ee03df8950532c2c568ff1cb4b042d4d089",
+      "pageVersion": "sha256:445a4c4f8f196e71e42a2c9bc5b4353079076261582e2000975cfa4caa145277",
       "completedBy": "antigravity",
-      "completedRunId": "ea77e8a8-8b46-485d-9dc0-d85af8c62d58",
-      "gitHead": "3e5c4615f49a59edb9b59c416c6471f7d8e5be7c",
-      "sourceFingerprint": "sha256:e4c86fc07d58348489e817cfe439e1c6c6930ee3cf54d9e99ae9b30569b2db75"
+      "completedRunId": "bb299f24-0f9e-406c-95fb-775f9529c39f",
+      "gitHead": "5966f66101a68374b7a043c0a50a988f56f002ad",
+      "sourceFingerprint": "sha256:50f5fd3fe2ee8c2d5fc97d94874f5e7da511d9643c5fd5cd6fceb9eaebb078a4"
     },
     "/openwiki/architecture/policy-and-telemetry-contracts.md": {
-      "pageVersion": "sha256:353c6cab4e74f0d8b43d6cb6ba1ac7d1a20869998ad5ce1d3cfc69883fa0f5a5",
+      "pageVersion": "sha256:7868d5070eadd3bc3f3b4432d210afaaed9b4c08dfd89cd8a1940423be6d4ba8",
       "completedBy": "antigravity",
-      "completedRunId": "ea77e8a8-8b46-485d-9dc0-d85af8c62d58",
-      "gitHead": "3e5c4615f49a59edb9b59c416c6471f7d8e5be7c",
-      "sourceFingerprint": "sha256:e4c86fc07d58348489e817cfe439e1c6c6930ee3cf54d9e99ae9b30569b2db75"
+      "completedRunId": "bb299f24-0f9e-406c-95fb-775f9529c39f",
+      "gitHead": "5966f66101a68374b7a043c0a50a988f56f002ad",
+      "sourceFingerprint": "sha256:50f5fd3fe2ee8c2d5fc97d94874f5e7da511d9643c5fd5cd6fceb9eaebb078a4"
     },
     "/openwiki/quickstart.md": {
-      "pageVersion": "sha256:574eac33afbfaeaa53a90df8fcedf2881f8ff82d0d1f15bd75e5e32c79ebbf22",
+      "pageVersion": "sha256:2aab2c2b26ebecd8145453a98a59afa337d6d36c1870f9cbcc3b8bd0cd165b71",
       "completedBy": "antigravity",
-      "completedRunId": "ea77e8a8-8b46-485d-9dc0-d85af8c62d58",
-      "gitHead": "3e5c4615f49a59edb9b59c416c6471f7d8e5be7c",
-      "sourceFingerprint": "sha256:e4c86fc07d58348489e817cfe439e1c6c6930ee3cf54d9e99ae9b30569b2db75"
+      "completedRunId": "bb299f24-0f9e-406c-95fb-775f9529c39f",
+      "gitHead": "5966f66101a68374b7a043c0a50a988f56f002ad",
+      "sourceFingerprint": "sha256:50f5fd3fe2ee8c2d5fc97d94874f5e7da511d9643c5fd5cd6fceb9eaebb078a4"
     }
   }
 }
