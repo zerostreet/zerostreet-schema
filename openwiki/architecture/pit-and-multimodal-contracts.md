@@ -11,7 +11,7 @@ tags:
   - opendart
 verified:
   - by: openwiki/0.7.2
-    at: 2026-11-22T03:39:00.516Z
+    at: 2026-11-22T04:40:13.785Z
 sources:
   - id: openwiki-source-8b0ea8a07e0fe75e78ef57fa
     resource: repo://src/zerostreet_schema/enums.py
@@ -19,7 +19,9 @@ sources:
     resource: repo://src/zerostreet_schema/multimodal.py
   - id: openwiki-source-6ed392b0a2f19b4525ae93d8
     resource: repo://src/zerostreet_schema/pit.py
-generated: { by: "antigravity", at: "2026-11-22T03:39:00.516Z" }
+  - id: openwiki-source-b129baa120e443eb17822a58
+    resource: repo://tests/test_multimodal.py
+generated: { by: "antigravity", at: "2026-11-22T04:40:13.785Z" }
 ---
 
 # Point-in-Time Validation & Multimodal Contracts / Point-in-Time 검증 및 멀티모달 임베딩 계약
@@ -48,11 +50,11 @@ event_ts (event/fiscal period) <= published_ts (public disclosure) <= available_
 
 ---
 
-## 2. Subscription Tier MRL Dimensions & Lawful Sources (`enums.py`) / 구독 티어별 MRL 차원 및 원천 데이터 소스 정책
+## 2. Subscription Tier MRL Dimensions, Processing Units & Lawful Sources / 구독 티어 · 객체 단위 · 원천 소스 정책
 
-`SubscriptionTier` determines allowed Matryoshka Representation Learning (MRL) dimensions via `allowed_embedding_dims()`, while `AllowedDataSource` restricts disclosures and macro inputs to legally redistributable sources.
+`SubscriptionTier` determines allowed Matryoshka Representation Learning (MRL) dimensions via `allowed_embedding_dims()`, `EntityType` (`equity`, `index`, `macro`, `sector`, `futures`) defines the target financial processing unit (`infer_entity_type`, `normalize_entity_type`, `default_modalities_for_entity`), and `AllowedDataSource` restricts disclosures and macro inputs to legally redistributable sources ([`enums.py`](../../src/zerostreet_schema/enums.py#L9-L146)).
 
-`SubscriptionTier`에 따라 `allowed_embedding_dims`가 허용하는 MRL 임베딩 차원이 결정되며, `AllowedDataSource`는 재배포 적법성이 검증된 공공·자체 가공 원천 데이터 소스만 허용합니다.
+`SubscriptionTier`에 따라 `allowed_embedding_dims`가 허용하는 MRL 임베딩 차원이 결정되며, `EntityType`(`equity`, `index`, `macro`, `sector`, `futures`)은 모델 정보 처리 대상 객체 단위와 모달리티 가용 프로파일(`default_modalities_for_entity`)을 정의하고, `AllowedDataSource`는 재배포 적법 원천 데이터 소스만 허용합니다 ([`enums.py`](../../src/zerostreet_schema/enums.py#L9-L146)).
 
 | Tier (`SubscriptionTier`) | Allowed `embedding_dim` | Commercial Purpose / 상업적 역할 |
 | :--- | :--- | :--- |
@@ -63,12 +65,13 @@ event_ts (event/fiscal period) <= published_ts (public disclosure) <= available_
 
 ---
 
-## 3. Multimodal Batch Contract (`multimodal.py`) / 멀티모달 배치 계약
+## 3. Multimodal Batch & Entity-Unit Contract (`multimodal.py`) / 멀티모달 배치 및 객체 단위 계약
 
 ```mermaid
 flowchart LR
-    BATCH["MultimodalFeatureBatch (as_of_ts, tier, embedding_dim)"] --> TIER_CHK["Check allowed_embedding_dims(tier)"]
-    BATCH --> ITEMS["Inspect each AssetEmbeddingItem"]
+    BATCH["MultimodalFeatureBatch (as_of_ts, tier, embedding_dim, entity_types)"] --> TIER_CHK["Check allowed_embedding_dims(tier)"]
+    BATCH --> ITEMS["Inspect each AssetEmbeddingItem (entity_type inferred)"]
+    ITEMS --> UNIT_CHK["Verify item.entity_type in batch entity_types"]
     ITEMS --> PIT_ITEM["Verify item available_ts lte as_of_ts"]
     ITEMS --> PIT_FILING["Verify nested PublicFilingItem timestamps"]
     ITEMS --> BLACKOUT{"is_blackout flag"}
@@ -76,6 +79,7 @@ flowchart LR
     BLACKOUT -- "True" --> PASS["Allow empty vector (Model B MASK_SIGNAL fallback)"]
 ```
 
+* **Entity-Type Normalization & Unit Consistency / 객체 단위 추론 및 일관성 검증**: `AssetEmbeddingItem` normalizes `entity_type` (including legacy aliases `"asset"` -> `"equity"`, `"market_index"` -> `"index"`) or infers it from `asset_id` prefix (`IDX:`, `MACRO:`/`FX:`, `SEC:`, `FUT:`), and `MultimodalFeatureBatch` auto-populates or strictly validates `entity_types` across all items ([`multimodal.py`](../../src/zerostreet_schema/multimodal.py#L90-L209)). (`AssetEmbeddingItem`은 `entity_type` 별칭을 정규화하거나 심볼 접두어에서 자동 추론하며, `MultimodalFeatureBatch`는 배치 내 `entity_types` 일치 여부를 검증하거나 자동 집계합니다.)
 * **Blackout Resilience / 결측 안전성**: When `AssetEmbeddingItem.is_blackout=True`, an empty `embedding_z_mm` vector is accepted so `HyperAlpha-VLA`'s `DynamicEmbeddingAdapter` falls back to its learned `[MASK_SIGNAL]` token; when `is_blackout=False`, `MultimodalFeatureBatch` strictly enforces exact dimension length and `math.isfinite` on every scalar. (`is_blackout=True`이면 빈 벡터를 허용해 `Model B`가 `[MASK_SIGNAL]`로 대체하며, `False`이면 정확한 차원 일치와 유한 실수 여부를 검증합니다.)
 * **Recursive Disclosure Check / 중첩 공시 검증**: Validates both top-level `item.available_ts` and nested `PublicFilingItem` timestamps against `as_of_ts`. (상위 항목뿐 아니라 내부 `public_filings`의 공시 시각까지 `as_of_ts` 이전인지 재귀 검증합니다.)
 
