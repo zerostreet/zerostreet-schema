@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:b0ade2ba5afc4e5c2ca9747a296edb6f3d3011ad341be82cc1761732cb9f37f2",
+  "pageVersion": "sha256:aaca98fd7447b4a3baae506c939b7022f0b507a34ee40993e1749b9908b0b7a1",
   "claims": [
     {
       "id": "claim_58b0db4467d64b2d9ed47a77622e8b59",
@@ -24,15 +24,15 @@
     },
     {
       "id": "claim_273f804f12f14c878c93b7fd1dac2fc4",
-      "statement": "MultimodalFeatureBatch validates tier-permitted embedding_dim, normalizes/infers EntityType units (equity/index/macro/sector/futures) and enforces batch entity_types consistency, checks look-ahead invariants across AssetEmbeddingItem and nested PublicFilingItem timestamps, and verifies finite length-matched vectors when is_blackout is False.",
+      "statement": "MultimodalFeatureBatch defaults embedding_model_version to zerolens_v2_mrl, validates tier-permitted embedding_dim, normalizes/infers EntityType units (equity/index/macro/sector/futures) and enforces batch entity_types consistency, checks look-ahead invariants across AssetEmbeddingItem and nested PublicFilingItem timestamps, and verifies finite length-matched vectors when is_blackout is False.",
       "evidence": [
         {
           "resource": "repo://src/zerostreet_schema/enums.py#L77-L146",
-          "version": "repo-lines-v1:sha256:8d806d7132da29dea4c6689c382d76849e65fa33605151e4ba82191935645567:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwNjkzMjkxODMxZDYwYjA2OTJmYmMyMDE4MDI3MTMxYTcxZTkyODFjMDcyODk3ZDFiNjY1YThjYjNmOGJkM2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjOTM0MWNlODc5N2IwOGE4NzdmYjZlOTdhMjNlZjZjYjYwODgxNWVlMmIyMmQ0MDY5NjY0MDYwNWRlYzFjYjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "version": "repo-lines-v1:sha256:4ccadbae2fd9d5de2d0b79c7640a9ca86b5de4ded8686d911afee64809c9a241:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwNjkzMjkxODMxZDYwYjA2OTJmYmMyMDE4MDI3MTMxYTcxZTkyODFjMDcyODk3ZDFiNjY1YThjYjNmOGJkM2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjOTM0MWNlODc5N2IwOGE4NzdmYjZlOTdhMjNlZjZjYjYwODgxNWVlMmIyMmQ0MDY5NjY0MDYwNWRlYzFjYjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         },
         {
           "resource": "repo://src/zerostreet_schema/multimodal.py#L90-L209",
-          "version": "repo-lines-v1:sha256:23eab8f21f7859738d25873d7009419808eca9fc715f9a58d14bb3e19e2c4605:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmY2FlNmJmYjEzOTk0NTRhZTJjYzU1MTNlZTRkMGFmYWE4NGIxNDQwOTEwNTdmNjlkYTcwNjNjMjkzMGE4YTRmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhMmFiMDkwYmNkMTYyMGZhNjJlYWVlMTU3YTc0ZmNhNjM1YWEyOWUxMmNiZmZkNjE4YjU3OTJkODdiYzAzYTNmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4NjlkYjFkNTFmMmJmODBiZDcxNzgzZWQyODc0ZmEzNzdhYjQxMzYyNjc4Njc4ZWFlOGJhZDkxZmUzNDA1MDhhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+          "version": "repo-lines-v1:sha256:ef8ab931c55bf670e7d364c655f87f67a9074fac5c07157bd6f594aa491dca3d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmY2FlNmJmYjEzOTk0NTRhZTJjYzU1MTNlZTRkMGFmYWE4NGIxNDQwOTEwNTdmNjlkYTcwNjNjMjkzMGE4YTRmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhMmFiMDkwYmNkMTYyMGZhNjJlYWVlMTU3YTc0ZmNhNjM1YWEyOWUxMmNiZmZkNjE4YjU3OTJkODdiYzAzYTNmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4NjlkYjFkNTFmMmJmODBiZDcxNzgzZWQyODc0ZmEzNzdhYjQxMzYyNjc4Njc4ZWFlOGJhZDkxZmUzNDA1MDhhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
         },
         {
           "resource": "repo://tests/test_multimodal.py#L84-L166",
@@ -43,6 +43,6 @@
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-11-22T04:40:13.785Z"
+    "at": "2026-11-22T09:05:44.650Z"
   }
 }

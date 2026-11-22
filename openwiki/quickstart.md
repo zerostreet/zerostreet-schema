@@ -8,15 +8,16 @@ tags:
   - pydantic-v2
   - contracts
   - business-context
+  - zerolens
+verified:
+  - by: openwiki/0.7.2
+    at: 2026-11-22T09:05:44.650Z
 sources:
   - id: openwiki-source-05ccef8d4cf1698187f20464
     resource: repo://pyproject.toml
   - id: openwiki-source-ff9f237687ae6937ad228647
     resource: repo://src/zerostreet_schema/__init__.py
-generated: { by: "antigravity", at: "2026-11-22T04:40:13.785Z" }
-verified:
-  - by: openwiki/0.7.2
-    at: 2026-11-22T04:40:13.785Z
+generated: { by: "antigravity", at: "2026-11-22T09:05:44.650Z" }
 ---
 
 # zerostreet-schema Quickstart & Business Overview / 빠른 시작 및 비즈니스 개요
@@ -58,7 +59,7 @@ verified:
 | :--- | :--- | :--- |
 | `enums.py` | `SubscriptionTier`, `allowed_embedding_dims`, `AllowedDataSource`, `DaemonStatus`, `HorizonMaskMode`, `EntityType`, `normalize_entity_type`, `infer_entity_type`, `default_modalities_for_entity` | Tiers, lawful sources, processing units (`equity`/`index`/`macro`/`sector`/`futures`), daemon status, mask modes / 구독 티어, 적법 소스, 객체 단위, 데몬 상태 및 마스킹 |
 | `pit.py` | `PointInTimeError`, `PointInTimeStamp`, `ensure_timezone_aware`, `assert_no_lookahead`, `filter_pit_records` | Triple-timestamp look-ahead enforcement / 3중 타임스탬프 및 시점 누수 검증 |
-| `multimodal.py` | `PublicFilingItem`, `MacroContextPayload`, `AIExtractedFactsPayload`, `SourceDataPayload`, `AssetEmbeddingItem`, `MultimodalFeatureBatch` | `Model A -> Model B` tensor, `entity_types`, and source contracts / 임베딩(`z_mm`), 객체 단위 목록 및 원천 데이터 계약 |
+| `multimodal.py` | `PublicFilingItem`, `MacroContextPayload`, `AIExtractedFactsPayload`, `SourceDataPayload`, `AssetEmbeddingItem`, `MultimodalFeatureBatch` | `ZeroLens -> Model B` tensor (`zerolens_v2_mrl`), `entity_types`, and source contracts / 임베딩(`z_mm`), 객체 단위 목록 및 원천 데이터 계약 |
 | `policy.py` | `RLRewardWeights`, `UserPolicyConfig`, `PolicyCompileRequest`, `PolicyCompileResult` | Custom Policy Head compile config & jobs / 개별 Policy Head 컴파일 요청/응답 |
 | `telemetry.py` | `FORBIDDEN_SECRET_FIELDS`, `RunTrace`, `KillCriterion`, `RunTraceRef`, `SourceFactsSnapshot`, `ThesisManifest` | Zero-trust execution trace & `alpha-wiki` manifest / 제로 트러스트 추적 및 매니페스트 |
 

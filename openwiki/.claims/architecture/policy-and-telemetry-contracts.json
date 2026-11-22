@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:7868d5070eadd3bc3f3b4432d210afaaed9b4c08dfd89cd8a1940423be6d4ba8",
+  "pageVersion": "sha256:dbb731e631a508a14f6608fc15e0edf51606d684b8e3256786106464f84788e2",
   "claims": [
     {
       "id": "claim_789744cdd1284c9f89f360476b3d1173",
-      "statement": "RLRewardWeights requires at least one core return/risk objective weight strictly greater than 0.0, and UserPolicyConfig enforces at least two unique asset symbols in target_universe.",
+      "statement": "RLRewardWeights requires at least one core return/risk objective weight strictly greater than 0.0, UserPolicyConfig enforces at least two unique asset symbols in target_universe, and PolicyCompileRequest defaults multimodal_tensor_version to zerolens_v2_mrl.",
       "evidence": [
         {
           "resource": "repo://src/zerostreet_schema/policy.py#L14-L93",
-          "version": "repo-lines-v1:sha256:0030cc852d81895737098307cc709457c43335a8b4854d5be4e82604c9ce2c37:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4NmYwMzA0YzA5OWU4ZDNlNGM0ZGMxZTI3OWMyZmFlMTJkNjVhZjJlYTlmZmU1MTRkMmUwM2ZlNjQwYmU2YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkMjYwOGYyNTFjY2Y1OTk2YTgyMTc1ZTYwNjdhZTJlODVmZjVmNjc4NDA0OWZmOTFhMzIxYWY1ZGM0OGM3NTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZjJjMjk5MmNmYzA5ZmYwZWE0YjhlODY4ZjNkOGU0NDNiMTI5NTY3Y2Q1NTkzYzQ2NDlkMDMyZmIzZmMxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllMzgyMGMzZjkzZThkY2ZjNTg4MzQwNmIyZjgwMmExOGVkNTZmMDhiMGQwYzEyZTc5ZjNlMzM3NDYwMWYwY2QifQ"
+          "version": "repo-lines-v1:sha256:a0521d1b71af8cb3b83e537d1c9cc7976847bc5812cc988dc63bc11a77268adb:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4NmYwMzA0YzA5OWU4ZDNlNGM0ZGMxZTI3OWMyZmFlMTJkNjVhZjJlYTlmZmU1MTRkMmUwM2ZlNjQwYmU2YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkMjYwOGYyNTFjY2Y1OTk2YTgyMTc1ZTYwNjdhZTJlODVmZjVmNjc4NDA0OWZmOTFhMzIxYWY1ZGM0OGM3NTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZjJjMjk5MmNmYzA5ZmYwZWE0YjhlODY4ZjNkOGU0NDNiMTI5NTY3Y2Q1NTkzYzQ2NDlkMDMyZmIzZmMxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllMzgyMGMzZjkzZThkY2ZjNTg4MzQwNmIyZjgwMmExOGVkNTZmMDhiMGQwYzEyZTc5ZjNlMzM3NDYwMWYwY2QifQ"
         }
       ]
     },
@@ -35,6 +35,6 @@
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-11-22T03:39:00.516Z"
+    "at": "2026-11-22T09:05:44.650Z"
   }
 }

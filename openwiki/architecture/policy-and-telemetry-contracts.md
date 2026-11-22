@@ -9,15 +9,16 @@ tags:
   - runtrace
   - thesis-manifest
   - compliance
+  - zerolens
 verified:
   - by: openwiki/0.7.2
-    at: 2026-11-22T03:39:00.516Z
+    at: 2026-11-22T09:05:44.650Z
 sources:
   - id: openwiki-source-15a96cce1ea9cb330248304e
     resource: repo://src/zerostreet_schema/policy.py
   - id: openwiki-source-394c4916a4afceef6df176b5
     resource: repo://src/zerostreet_schema/telemetry.py
-generated: { by: "antigravity", at: "2026-11-22T03:39:00.516Z" }
+generated: { by: "antigravity", at: "2026-11-22T09:05:44.650Z" }
 ---
 
 # Policy Compilation & Zero-Trust Telemetry Contracts / 정책 컴파일 및 제로 트러스트 텔레메트리 계약
@@ -34,7 +35,7 @@ ZeroStreet는 자본시장법상 무인가 투자자문·일임업 리스크를 
 | :--- | :--- |
 | **`RLRewardWeights`** | All return/risk weights (`excess_return_20`, `sortino_20`, `cvar_20`, `mdd_20`, etc.) must be `>= 0.0`, and `_validate_non_zero_objective` enforces that the objective total is strictly `> 0.0`. / 모든 수익·리스크 가중치는 0 이상이어야 하며 핵심 목적함수 합계가 반드시 양수(`> 0.0`)여야 합니다. |
 | **`UserPolicyConfig`** | Enforces at least 2 distinct non-empty symbols in `target_universe`, `portfolio_horizon` (`1..64`), `horizon_mask_mode` (`HorizonMaskMode`), `weights_output_mode` (`entmax15` / `sparsemax` / `softmax`), and `max_single_weight`. / 공백 제거 후 최소 2개 고유 심볼, 기간(1~64), 마스킹/활성화 모드를 검증합니다. |
-| **`PolicyCompileRequest` / `PolicyCompileResult`** | Request/response contract between client agents and `AlphaSmith` Serverless RL Foundry to issue a personalized `policy_checkpoint_id`, `checkpoint_sha256`, and `artifact_uri`. / 고객 맞춤형 Policy Head 컴파일 요청 및 체크포인트 발급 입출력 계약입니다. |
+| **`PolicyCompileRequest` / `PolicyCompileResult`** | Request/response contract between client agents and `AlphaSmith` Serverless RL Foundry (default `multimodal_tensor_version="zerolens_v2_mrl"`) to issue a personalized `policy_checkpoint_id`, `checkpoint_sha256`, and `artifact_uri`. / 고객 맞춤형 Policy Head 컴파일 요청(기본 `multimodal_tensor_version="zerolens_v2_mrl"`) 및 체크포인트 발급 입출력 계약입니다. |
 
 This schema boundary allows customer agents to configure `HyperAlpha-VLA` and `AlphaSmith Foundry` safely without any vendor-preset strategy weights.
 
