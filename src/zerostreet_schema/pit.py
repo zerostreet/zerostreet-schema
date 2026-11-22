@@ -1,4 +1,7 @@
-"""Point-in-Time 3중 타임스탬프 시점 누수(Look-Ahead Bias) 검증 유틸리티."""
+"""Point-in-Time triple-timestamp validators preventing look-ahead bias.
+
+Point-in-Time 3중 타임스탬프 기반 시점 누수(Look-Ahead Bias) 방지 검증 유틸리티입니다.
+"""
 
 from collections.abc import Callable, Iterable
 from datetime import datetime
@@ -10,18 +13,27 @@ T = TypeVar("T")
 
 
 class PointInTimeError(ValueError):
-    """시점 누수(Look-Ahead Bias) 또는 타임스탬프 순서 위반 시 발생하는 예외."""
+    """Raised when look-ahead bias or timestamp chronology is violated.
+
+    시점 누수(Look-Ahead Bias) 또는 타임스탬프 순서 위반 시 발생하는 예외입니다.
+    """
 
 
 def ensure_timezone_aware(dt: datetime, field_name: str) -> datetime:
-    """datetime 객체가 timezone-aware(tzinfo 포함)인지 검증합니다."""
+    """Validate that a datetime carries tzinfo and a non-None UTC offset.
+
+    datetime 객체가 timezone-aware(tzinfo 및 오프셋 포함)인지 검증합니다.
+    """
     if dt.tzinfo is None or dt.utcoffset() is None:
         raise PointInTimeError(f"{field_name} must be timezone-aware (got naive datetime: {dt!r}).")
     return dt
 
 
 class PointInTimeStamp(BaseModel):
-    """금융 원천 데이터의 3중 타임스탬프(사건 발생 -> 공시 발표 -> 모델 투입 가능) 계약."""
+    """Triple-timestamp contract (event -> publication -> model availability).
+
+    금융 원천 데이터의 3중 타임스탬프(사건 발생 -> 공시 발표 -> 모델 투입 가능) 계약입니다.
+    """
 
     event_ts: datetime = Field(description="실적 기준일 또는 사건 발생 시각 (tz-aware)")
     published_ts: datetime = Field(description="공시/발표가 외부에 실제 공개된 시각 (tz-aware)")
@@ -51,7 +63,10 @@ def assert_no_lookahead(
     as_of_ts: datetime,
     asset_id: str = "",
 ) -> None:
-    """available_ts <= as_of_ts 불변식을 검증하여 미래 참조를 차단합니다."""
+    """Assert available_ts <= as_of_ts to block future information leakage.
+
+    available_ts <= as_of_ts 불변식을 검증하여 미래 시점 데이터 참조를 차단합니다.
+    """
     ensure_timezone_aware(available_ts, "available_ts")
     ensure_timezone_aware(as_of_ts, "as_of_ts")
     if available_ts > as_of_ts:
@@ -67,7 +82,10 @@ def filter_pit_records(
     as_of_ts: datetime,
     ts_getter: Callable[[T], datetime],
 ) -> list[T]:
-    """as_of_ts 시점 기준 관측 가능한(available_ts <= as_of_ts) 레코드만 필터링합니다."""
+    """Filter records observable at or before as_of_ts (available_ts <= as_of_ts).
+
+    as_of_ts 시점 기준 관측 가능한(available_ts <= as_of_ts) 레코드만 필터링합니다.
+    """
     ensure_timezone_aware(as_of_ts, "as_of_ts")
     visible: list[T] = []
     for record in records:

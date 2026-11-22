@@ -1,4 +1,7 @@
-"""사용자 개별 Policy Head 컴파일 설정 및 요청/응답 계약 모듈."""
+"""User-defined Policy Head compilation configuration and Foundry contracts.
+
+사용자 개별 Policy Head 컴파일 설정 및 Foundry 요청/응답 계약 모듈입니다.
+"""
 
 from datetime import datetime
 from typing import Literal
@@ -9,10 +12,9 @@ from zerostreet_schema.enums import HorizonMaskMode, SubscriptionTier
 
 
 class RLRewardWeights(BaseModel):
-    """유저가 직접 지정하는 미분 가능 궤적 RL 목적함수 가중치.
+    """User-supplied differentiable trajectory RL objective weights (at least one > 0).
 
-    자본시장법상 회사가 기본 전략/추천 종목을 배포하지 않도록, 모든 가중치는 0 이상이며
-    최소 1개 이상의 핵심 수익/리스크 항이 양수(> 0)여야 합니다.
+    사용자가 직접 지정하는 미분 가능 궤적 RL 목적함수 가중치(최소 1개 이상 양수 필수)입니다.
     """
 
     excess_return_20: float = Field(default=0.0, ge=0.0)
@@ -50,7 +52,10 @@ class RLRewardWeights(BaseModel):
 
 
 class UserPolicyConfig(BaseModel):
-    """유저 에이전트가 반드시 명시적으로 공급해야 하는 Policy Head 컴파일 설정."""
+    """Mandatory user-supplied configuration for Policy Head compilation.
+
+    사용자 에이전트가 반드시 명시적으로 공급해야 하는 Policy Head 컴파일 설정입니다.
+    """
 
     target_universe: list[str] = Field(
         min_length=2,
@@ -75,7 +80,10 @@ class UserPolicyConfig(BaseModel):
 
 
 class PolicyCompileRequest(BaseModel):
-    """AlphaSmith Serverless RL Foundry 컴파일 요청 스키마."""
+    """Request payload for AlphaSmith Serverless RL Foundry compilation.
+
+    AlphaSmith Serverless RL Foundry 컴파일 요청 스키마입니다.
+    """
 
     user_id: str = Field(min_length=1)
     tier: SubscriptionTier = Field(default=SubscriptionTier.SOVEREIGN_PRO)
@@ -86,7 +94,10 @@ class PolicyCompileRequest(BaseModel):
 
 
 class PolicyCompileResult(BaseModel):
-    """AlphaSmith Foundry 컴파일 완료 결과 스키마."""
+    """Completed result schema from AlphaSmith Foundry policy compilation.
+
+    AlphaSmith Foundry 컴파일 완료 결과 스키마입니다.
+    """
 
     job_id: str = Field(min_length=1)
     policy_checkpoint_id: str = Field(min_length=1)

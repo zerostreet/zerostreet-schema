@@ -1,4 +1,7 @@
-"""제로 트러스트 RunTrace 텔레메트리 및 alpha-wiki ThesisManifest v2.0 스키마 모듈."""
+"""Zero-trust RunTrace telemetry and alpha-wiki ThesisManifest v2.0 schemas.
+
+제로 트러스트 RunTrace 텔레메트리 및 alpha-wiki ThesisManifest v2.0 스키마 모듈입니다.
+"""
 
 from datetime import datetime
 from typing import Literal
@@ -26,7 +29,10 @@ FORBIDDEN_SECRET_FIELDS: frozenset[str] = frozenset(
 
 
 class RunTrace(BaseModel):
-    """AlphaGraph 실행 종료 후 로컬 저장 및 선택적 클라우드 전송용 제로 트러스트 스냅샷."""
+    """Zero-trust snapshot emitted after AlphaGraph execution (forbids secrets).
+
+    AlphaGraph 실행 종료 후 로컬 저장 및 선택적 클라우드 전송용 제로 트러스트 스냅샷입니다.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -64,7 +70,10 @@ class RunTrace(BaseModel):
 
 
 class KillCriterion(BaseModel):
-    """정량적 가설 무효화 조건(Quantitative Kill Criterion)."""
+    """Quantitative thesis invalidation threshold.
+
+    정량적 리서치 가설 무효화 조건(Kill Criterion)입니다.
+    """
 
     metric: str = Field(min_length=1)
     operator: Literal["<=", ">=", "<", ">", "=="]
@@ -73,7 +82,10 @@ class KillCriterion(BaseModel):
 
 
 class RunTraceRef(BaseModel):
-    """ThesisManifest가 참조하는 AlphaGraph 실행 메타데이터."""
+    """AlphaGraph execution metadata referenced by ThesisManifest.
+
+    ThesisManifest가 참조하는 AlphaGraph 실행 메타데이터입니다.
+    """
 
     run_id: str = Field(min_length=1)
     policy_checkpoint_id: str = Field(min_length=1)
@@ -82,7 +94,10 @@ class RunTraceRef(BaseModel):
 
 
 class SourceFactsSnapshot(BaseModel):
-    """ThesisManifest 내 Point-in-Time 검증 완료 팩트 스냅샷."""
+    """Point-in-Time verified fact snapshot embedded inside ThesisManifest.
+
+    ThesisManifest 내 Point-in-Time 검증이 완료된 팩트 스냅샷입니다.
+    """
 
     available_ts: datetime
     event_tags: list[str] = Field(default_factory=list)
@@ -96,7 +111,10 @@ class SourceFactsSnapshot(BaseModel):
 
 
 class ThesisManifest(BaseModel):
-    """alpha-wiki v2.0 구조화 리서치 및 HITL 브리핑 매니페스트 (thesis_manifest.json)."""
+    """Structured alpha-wiki v2.0 research and HITL briefing manifest.
+
+    alpha-wiki v2.0 구조화 리서치 및 HITL 브리핑 매니페스트(thesis_manifest.json)입니다.
+    """
 
     schema_version: str = Field(default="2.0")
     generated_at: datetime

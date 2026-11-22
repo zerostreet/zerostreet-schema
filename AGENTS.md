@@ -14,3 +14,8 @@ This repository has a generated `openwiki/` evidence index. It is optional just-
 The scheduled OpenWiki GitHub Actions workflow refreshes the repository wiki. Do not hand-edit generated OpenWiki pages unless explicitly asked; prefer updating source code/docs and letting OpenWiki regenerate.
 
 <!-- OPENWIKI:END -->
+
+## Repository Documentation & Bilingual Standards / 문서 및 다국어 작성 규칙
+
+- **Python Docstrings (`src/**/*.py`)**: Every module, public class, and public function/method MUST carry a bilingual docstring written with **English first, immediately followed by the Korean equivalent** (keep lines `<= 100` chars).
+- **README & OpenWiki Documentation**: Keep `openwiki/INSTRUCTIONS.md` authoritative. Every `README.md` and `openwiki/quickstart.md` MUST open with the repository's **Business Role & Value Proposition / 비즈니스 역할 및 가치**, and all OpenWiki pages MUST be written bilingually (English first, then Korean) using relative internal Markdown links only.

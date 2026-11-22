@@ -1,10 +1,16 @@
-"""ZeroStreet 공통 열거형 및 과금 티어 정책 모듈."""
+"""Shared ZeroStreet enumerations and subscription-tier policies.
+
+ZeroStreet 공통 열거형 및 과금 티어 정책 모듈입니다.
+"""
 
 from enum import StrEnum
 
 
 class SubscriptionTier(StrEnum):
-    """ZeroStreet 서비스 구독 티어 열거형."""
+    """ZeroStreet B2A subscription tier enumeration.
+
+    ZeroStreet 서비스 구독 티어 열거형입니다.
+    """
 
     DEVELOPER = "developer"
     SOVEREIGN_PRO = "sovereign_pro"
@@ -21,13 +27,19 @@ _TIER_EMBEDDING_DIMS: dict[SubscriptionTier, frozenset[int]] = {
 
 
 def allowed_embedding_dims(tier: SubscriptionTier | str) -> frozenset[int]:
-    """구독 티어에서 허용되는 MRL 임베딩 차원 집합을 반환합니다."""
+    """Return allowed Matryoshka (MRL) embedding dimensions for a tier.
+
+    구독 티어에서 허용되는 MRL 임베딩 차원 집합을 반환합니다.
+    """
     resolved = SubscriptionTier(tier)
     return _TIER_EMBEDDING_DIMS[resolved]
 
 
 class AllowedDataSource(StrEnum):
-    """저작권 및 재배포 적법성이 검증된 허용 원천 데이터 소스."""
+    """Whitelisted data sources verified for lawful redistribution.
+
+    저작권 및 재배포 적법성이 검증된 허용 원천 데이터 소스입니다.
+    """
 
     OPENDART = "OpenDART"
     SEC_EDGAR = "SEC_EDGAR"
@@ -39,7 +51,10 @@ class AllowedDataSource(StrEnum):
 
 
 class DaemonStatus(StrEnum):
-    """AlphaGraph 로컬 실행 데몬 종료 상태."""
+    """Termination states for the local AlphaGraph execution daemon.
+
+    AlphaGraph 로컬 실행 데몬의 종료 상태 열거형입니다.
+    """
 
     COMPLETED = "COMPLETED"
     BLOCKED_BY_GUARDRAIL = "BLOCKED_BY_GUARDRAIL"
@@ -49,7 +64,10 @@ class DaemonStatus(StrEnum):
 
 
 class HorizonMaskMode(StrEnum):
-    """HyperAlpha-VLA 다기간 포트폴리오 블록 간 어텐션 마스킹 모드."""
+    """Attention masking modes across multi-horizon portfolio blocks in HyperAlpha-VLA.
+
+    HyperAlpha-VLA 다기간 포트폴리오 블록 간 어텐션 마스킹 모드입니다.
+    """
 
     BIDIRECTIONAL_PORTFOLIO = "bidirectional_portfolio"
     CAUSAL_PORTFOLIO = "causal_portfolio"

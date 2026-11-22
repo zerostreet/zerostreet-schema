@@ -33,7 +33,12 @@ jobs:
       - name: Run OpenWiki
         id: openwiki
         continue-on-error: true
-        run: openwiki code --update --print
+        run: >-
+          openwiki code --update --print
+          "Follow openwiki/INSTRUCTIONS.md strictly: write every updated or created OpenWiki page
+          bilingually (English first, immediately followed by Korean), preserve the Business Role
+          & Value Proposition section in quickstart.md, and use relative internal Markdown links
+          only."
         env:
           OPENWIKI_PROVIDER: openrouter
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}

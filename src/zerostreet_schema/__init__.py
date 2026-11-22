@@ -1,4 +1,7 @@
-"""ZeroStreet 공통 Pydantic v2 데이터 계약 및 Point-in-Time 검증기 공개 API."""
+"""Public Pydantic v2 contracts and Point-in-Time validators for ZeroStreet.
+
+ZeroStreet 공통 Pydantic v2 데이터 계약 및 Point-in-Time 검증기 공개 API입니다.
+"""
 
 from zerostreet_schema.enums import (
     AllowedDataSource,

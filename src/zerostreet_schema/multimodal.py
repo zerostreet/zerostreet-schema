@@ -1,4 +1,7 @@
-"""Model A -> Model B 멀티모달 임베딩 및 적법 원천 데이터 스키마 모듈."""
+"""Model A to Model B multimodal embedding and compliant source schemas.
+
+Model A와 Model B 간 멀티모달 임베딩 및 적법 원천 데이터 스키마 모듈입니다.
+"""
 
 import math
 from datetime import datetime
@@ -11,7 +14,10 @@ from zerostreet_schema.pit import PointInTimeError, assert_no_lookahead, ensure_
 
 
 class PublicFilingItem(BaseModel):
-    """공공·공시 원천 레코드(OpenDART / SEC EDGAR 등)."""
+    """Public disclosure filing record (OpenDART, SEC EDGAR, etc.).
+
+    공공·공시 원천 레코드(OpenDART, SEC EDGAR 등) 계약입니다.
+    """
 
     source: AllowedDataSource = Field(description="허용된 공공·공시 원천 데이터 소스")
     filing_id: str = Field(min_length=1, description="공시 접수번호 또는 고유 ID")
@@ -39,7 +45,10 @@ class PublicFilingItem(BaseModel):
 
 
 class MacroContextPayload(BaseModel):
-    """한국은행 ECOS / FRED 거시경제 지표 요약 페이로드."""
+    """Macroeconomic indicator summary payload from BOK ECOS / FRED.
+
+    한국은행 ECOS / FRED 거시경제 지표 요약 페이로드입니다.
+    """
 
     source: AllowedDataSource = Field(default=AllowedDataSource.BOK_ECOS_FRED)
     us10y_2y_spread_bps: float | None = None
@@ -48,7 +57,10 @@ class MacroContextPayload(BaseModel):
 
 
 class AIExtractedFactsPayload(BaseModel):
-    """AI 에이전트가 공공 원천에서 자체 생성한 구조화 2차 팩트(유료 언론 기사 전문 복제 금지)."""
+    """Structured secondary facts derived by AI agents (no paid article copying).
+
+    AI 에이전트가 공공 원천에서 추출한 구조화 2차 팩트(유료 기사 원문 복제 금지)입니다.
+    """
 
     event_tags: list[str] = Field(default_factory=list)
     guidance_tone_score: float = Field(default=0.0, ge=-1.0, le=1.0)
@@ -58,7 +70,10 @@ class AIExtractedFactsPayload(BaseModel):
 
 
 class SourceDataPayload(BaseModel):
-    """Model A가 z_mm과 함께 공급하는 정제 원천 데이터 페이로드."""
+    """Cleaned source data payload delivered alongside Model A z_mm tensors.
+
+    Model A가 z_mm 임베딩과 함께 제공하는 정제 원천 데이터 페이로드입니다.
+    """
 
     public_filings: list[PublicFilingItem] = Field(default_factory=list)
     macro_context: MacroContextPayload | None = None
@@ -66,7 +81,10 @@ class SourceDataPayload(BaseModel):
 
 
 class AssetEmbeddingItem(BaseModel):
-    """개별 자산/지수 단위 멀티모달 임베딩 및 원천 데이터 항목."""
+    """Per-asset multimodal embedding tensor and source data item.
+
+    개별 자산/지수 단위 멀티모달 임베딩 및 원천 데이터 항목입니다.
+    """
 
     asset_id: str = Field(min_length=1, description="자산 식별자 (예: KRX:005930, US:SPY)")
     event_ts: datetime | None = Field(default=None, description="사건 기준 시각")
@@ -108,7 +126,10 @@ class AssetEmbeddingItem(BaseModel):
 
 
 class MultimodalFeatureBatch(BaseModel):
-    """GET /v1/features/multimodal 표준 응답 배치 스키마."""
+    """Standard response batch schema for GET /v1/features/multimodal.
+
+    GET /v1/features/multimodal 엔드포인트의 표준 응답 배치 스키마입니다.
+    """
 
     schema_version: str = Field(default="1.0.0")
     as_of_ts: datetime = Field(description="추론 또는 백테스트 기준 시각 (tz-aware)")
