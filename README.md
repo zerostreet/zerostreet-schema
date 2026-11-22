@@ -23,7 +23,7 @@
    한쪽에서는 "주문이 없다"고 믿고, 다른 쪽에서는 다른 형식으로 데이터를 보내면 시스템 전체가 신뢰를 잃습니다.
 
 **`zerostreet-schema`는 이 문제를 해결하는 ZeroStreet 생태계의 공통 언어(MIT 오픈소스)입니다.**  
-`zerosteer`, `zerostreet-models`, `alphasmith`, `alphagraph`, `zerostreet-skills`가 모두 이 단 하나의 Pydantic v2 계약을 공유하기 때문에, 데이터 누수와 규격 불일치를 코드 실행 전에 원천 차단합니다.
+`zerosteer`, `zerostreet-models`, `alphasmith`, `alphagraph`, `zerostreet-mcp`가 모두 이 단 하나의 Pydantic v2 계약을 공유하기 때문에, 데이터 누수와 규격 불일치를 코드 실행 전에 원천 차단합니다.
 
 ---
 

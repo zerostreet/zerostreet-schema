@@ -2,25 +2,25 @@
   "schemaVersion": 1,
   "pages": {
     "/openwiki/architecture/pit-and-multimodal-contracts.md": {
+      "gitHead": "8782730970c1428aaea828dd4444a008029c480f",
+      "sourceFingerprint": "sha256:9b3fe1c3f442dec89902a333fe8ae99605e4f10d606d95a8414727c717f56d46",
       "pageVersion": "sha256:0cf01f90e1433d2c901f780bd2ca5e6918fb84cc329e6864e17f952c79db1f3e",
       "completedBy": "antigravity",
-      "completedRunId": "8c3f80da-a101-44cc-9eb7-b7cbb95ccf6a",
-      "gitHead": "8782730970c1428aaea828dd4444a008029c480f",
-      "sourceFingerprint": "sha256:9b3fe1c3f442dec89902a333fe8ae99605e4f10d606d95a8414727c717f56d46"
+      "completedRunId": "8c3f80da-a101-44cc-9eb7-b7cbb95ccf6a"
     },
     "/openwiki/architecture/policy-and-telemetry-contracts.md": {
+      "gitHead": "8782730970c1428aaea828dd4444a008029c480f",
+      "sourceFingerprint": "sha256:9b3fe1c3f442dec89902a333fe8ae99605e4f10d606d95a8414727c717f56d46",
       "pageVersion": "sha256:0376127518158c2c7537bb41a1b6395a6abd3e854bc46e3cfb91459210e36a9c",
       "completedBy": "antigravity",
-      "completedRunId": "8c3f80da-a101-44cc-9eb7-b7cbb95ccf6a",
-      "gitHead": "8782730970c1428aaea828dd4444a008029c480f",
-      "sourceFingerprint": "sha256:9b3fe1c3f442dec89902a333fe8ae99605e4f10d606d95a8414727c717f56d46"
+      "completedRunId": "8c3f80da-a101-44cc-9eb7-b7cbb95ccf6a"
     },
     "/openwiki/quickstart.md": {
-      "pageVersion": "sha256:a82ce56e164ef0d018e01a5b8779f435ece68ad6fe3f417493999a7cd85efe5a",
+      "pageVersion": "sha256:8a387cce8b15c8841e4c2f23789797906ed1112af63725d395a9872af223c40b",
       "completedBy": "antigravity",
-      "completedRunId": "8c3f80da-a101-44cc-9eb7-b7cbb95ccf6a",
-      "gitHead": "8782730970c1428aaea828dd4444a008029c480f",
-      "sourceFingerprint": "sha256:9b3fe1c3f442dec89902a333fe8ae99605e4f10d606d95a8414727c717f56d46"
+      "completedRunId": "dfe7f76e-bd46-45bf-891b-f7d329eaacb8",
+      "gitHead": "f881d442816d3ec6b4ae46f23cfca0d08ee1d6ff",
+      "sourceFingerprint": "sha256:84ab1c9409ec966ac12e1fc8580740fb03b85a9e172aa5d552797104a33c8b05"
     }
   }
 }

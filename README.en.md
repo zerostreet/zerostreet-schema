@@ -20,7 +20,7 @@ Quantitative AI tools commonly break for two structural reasons:
 1. **Backtests look extraordinary while live trading underperforms** because restatements or future news leaked past the decision timestamp (`lookahead bias`).
 2. **Cloud feature encoders, policy trainers, and local execution daemons drift apart** when subscription-tier limits, asset identifiers, and telemetry formats are duplicated across repositories.
 
-**`zerostreet-schema` (Public MIT)** serves as Layer 0's single source of truth across `zerosteer`, `zerostreet-models`, `alphasmith`, `alphagraph`, and `zerostreet-skills`.
+**`zerostreet-schema` (Public MIT)** serves as Layer 0's single source of truth across `zerosteer`, `zerostreet-models`, `alphasmith`, `alphagraph`, and `zerostreet-mcp`.
 
 ---
 

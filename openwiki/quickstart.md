@@ -5,20 +5,20 @@ description: ZeroStreet 생태계 전체가 공유하는 Layer 0 Pydantic v2 데
 tags: [quickstart, zerostreet-schema, pydantic-v2, pit, zerolens, zerosteer]
 verified:
   - by: openwiki/0.7.2
-    at: 2026-11-22T12:52:41.987Z
+    at: 2026-11-22T13:38:42.005Z
 sources:
   - id: openwiki-source-05ccef8d4cf1698187f20464
     resource: repo://pyproject.toml
   - id: openwiki-source-ff9f237687ae6937ad228647
     resource: repo://src/zerostreet_schema/__init__.py
-generated: { by: "antigravity", at: "2026-11-22T12:52:41.987Z" }
+generated: { by: "antigravity", at: "2026-11-22T13:38:42.005Z" }
 ---
 
 # zerostreet-schema v0.2.0 개요 및 빠른 시작
 
 ## 왜 이 프로젝트가 필요한가요? (비즈니스 역할 및 소비자 가치)
 
-`zerostreet-schema`(`v0.2.0`, Public MIT)는 **주식회사 제로스트리트(ZeroStreet Inc.)**의 클라우드(`zerostreet-models` · `alphasmith`)와 투자자 PC(`zerosteer` · `alphagraph` · `zerostreet-skills`)가 서로 다른 언어로 오해하지 않도록 묶어 주는 **Layer 0 공통 데이터 계약**입니다.
+`zerostreet-schema`(`v0.2.0`, Public MIT)는 **주식회사 제로스트리트(ZeroStreet Inc.)**의 클라우드(`zerostreet-models` · `alphasmith`)와 투자자 PC(`zerosteer` · `alphagraph` · `zerostreet-mcp`)가 서로 다른 언어로 오해하지 않도록 묶어 주는 **Layer 0 공통 데이터 계약**입니다.
 
 소비자 입장에서 이 패키지가 지켜 주는 핵심 가치는 세 가지입니다.
 1. **눈가림 백테스트(미래참조) 차단**: 실적 정정이나 미래 뉴스가 과거 판단 시점(`as_of_ts`) 안으로 섞여 들어오지 못하도록 `PointInTimeStamp`와 `assert_no_lookahead`로 모든 데이터의 발표 시각 순서를 강제합니다.
