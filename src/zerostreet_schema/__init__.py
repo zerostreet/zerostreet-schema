@@ -6,9 +6,13 @@ ZeroStreet 공통 Pydantic v2 데이터 계약 및 Point-in-Time 검증기 공�
 from zerostreet_schema.enums import (
     AllowedDataSource,
     DaemonStatus,
+    EntityType,
     HorizonMaskMode,
     SubscriptionTier,
     allowed_embedding_dims,
+    default_modalities_for_entity,
+    infer_entity_type,
+    normalize_entity_type,
 )
 from zerostreet_schema.multimodal import (
     AIExtractedFactsPayload,
@@ -47,6 +51,7 @@ __all__ = [
     "AllowedDataSource",
     "AssetEmbeddingItem",
     "DaemonStatus",
+    "EntityType",
     "HorizonMaskMode",
     "KillCriterion",
     "MacroContextPayload",
@@ -67,5 +72,8 @@ __all__ = [
     "__version__",
     "allowed_embedding_dims",
     "assert_no_lookahead",
+    "default_modalities_for_entity",
     "filter_pit_records",
+    "infer_entity_type",
+    "normalize_entity_type",
 ]

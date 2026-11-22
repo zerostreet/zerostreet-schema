@@ -72,3 +72,75 @@ class HorizonMaskMode(StrEnum):
     BIDIRECTIONAL_PORTFOLIO = "bidirectional_portfolio"
     CAUSAL_PORTFOLIO = "causal_portfolio"
     BACKWARD_DP = "backward_dp"
+
+
+class EntityType(StrEnum):
+    """First-class financial target unit processed by Model A and served via AlphaSmith.
+
+    Model A가 정보를 처리·압축하고 AlphaSmith가 서빙하는 금융 객체 단위 열거형입니다.
+    """
+
+    EQUITY = "equity"
+    INDEX = "index"
+    MACRO = "macro"
+    SECTOR = "sector"
+    FUTURES = "futures"
+
+
+_LEGACY_ENTITY_ALIASES: dict[str, EntityType] = {
+    "asset": EntityType.EQUITY,
+    "market_index": EntityType.INDEX,
+}
+
+
+def normalize_entity_type(value: EntityType | str) -> EntityType:
+    """Normalize an EntityType enum or case-insensitive/legacy alias into EntityType.
+
+    EntityType 열거형이나 대소문자·레거시 별칭('asset', 'market_index')을 정규화합니다.
+    """
+    if isinstance(value, EntityType):
+        return value
+    raw = str(value).strip().lower()
+    if raw in _LEGACY_ENTITY_ALIASES:
+        return _LEGACY_ENTITY_ALIASES[raw]
+    try:
+        return EntityType(raw)
+    except ValueError as exc:
+        valid = ", ".join(et.value for et in EntityType)
+        raise ValueError(
+            f"Unknown entity_type={value!r}. Expected one of: {valid}."
+        ) from exc
+
+
+def infer_entity_type(entity_id: str) -> EntityType:
+    """Infer target EntityType from standardized symbol prefixes (IDX/MACRO/FX/SEC/FUT).
+
+    표준 심볼 접두어(IDX:/MACRO:/FX:/SEC:/SECTOR:/FUT:)로부터 객체 단위를 추론합니다.
+    """
+    upper = entity_id.strip().upper()
+    if upper.startswith("IDX:"):
+        return EntityType.INDEX
+    if upper.startswith(("MACRO:", "FX:")):
+        return EntityType.MACRO
+    if upper.startswith(("SEC:", "SECTOR:")):
+        return EntityType.SECTOR
+    if upper.startswith("FUT:"):
+        return EntityType.FUTURES
+    return EntityType.EQUITY
+
+
+def default_modalities_for_entity(entity_type: EntityType | str) -> dict[str, bool]:
+    """Return default 5-modality availability flags conditioned on EntityType.
+
+    객체 단위(EntityType)별 기본 5대 모달리티(ts/filing/macro/fact/text) 가용 맵을
+    반환합니다.
+    """
+    resolved = normalize_entity_type(entity_type)
+    has_filing = resolved in {EntityType.EQUITY, EntityType.SECTOR}
+    return {
+        "ts": True,
+        "filing": has_filing,
+        "macro": True,
+        "fact": True,
+        "text": True,
+    }

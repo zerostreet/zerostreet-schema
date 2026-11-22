@@ -104,3 +104,63 @@ def test_multimodal_allows_blackout_empty_embedding_and_rejects_nan():
             available_ts=as_of,
             embedding_z_mm=[float("nan")],
         )
+
+
+def test_entity_type_inference_aliases_and_batch_validation():
+    from zerostreet_schema import (
+        EntityType,
+        default_modalities_for_entity,
+        infer_entity_type,
+        normalize_entity_type,
+    )
+
+    as_of = datetime(2026, 11, 21, 8, 30, tzinfo=UTC)
+    assert infer_entity_type("KRX:005930") == EntityType.EQUITY
+    assert infer_entity_type("IDX:KOSPI200") == EntityType.INDEX
+    assert infer_entity_type("MACRO:US") == EntityType.MACRO
+    assert infer_entity_type("FX:KRWUSD") == EntityType.MACRO
+    assert infer_entity_type("SEC:SEMICONDUCTOR") == EntityType.SECTOR
+    assert infer_entity_type("FUT:MES") == EntityType.FUTURES
+
+    assert normalize_entity_type("asset") == EntityType.EQUITY
+    assert normalize_entity_type("market_index") == EntityType.INDEX
+    assert normalize_entity_type("MACRO") == EntityType.MACRO
+    with pytest.raises(ValueError, match="Unknown entity_type"):
+        normalize_entity_type("invalid_unit")
+
+    assert default_modalities_for_entity(EntityType.EQUITY)["filing"] is True
+    assert default_modalities_for_entity(EntityType.SECTOR)["filing"] is True
+    assert default_modalities_for_entity(EntityType.INDEX)["filing"] is False
+    assert default_modalities_for_entity(EntityType.MACRO)["filing"] is False
+    assert default_modalities_for_entity(EntityType.FUTURES)["filing"] is False
+
+    eq_item = AssetEmbeddingItem(
+        asset_id="KRX:005930",
+        available_ts=as_of,
+        embedding_z_mm=[0.1] * 32,
+    )
+    mac_item = AssetEmbeddingItem(
+        asset_id="MACRO:KR",
+        entity_type="macro",
+        available_ts=as_of,
+        embedding_z_mm=[0.2] * 32,
+    )
+    assert eq_item.entity_type == EntityType.EQUITY
+    assert mac_item.entity_type == EntityType.MACRO
+
+    batch = MultimodalFeatureBatch(
+        as_of_ts=as_of,
+        tier=SubscriptionTier.DEVELOPER,
+        embedding_dim=32,
+        items=[eq_item, mac_item],
+    )
+    assert batch.entity_types == [EntityType.EQUITY, EntityType.MACRO]
+
+    with pytest.raises(ValidationError, match="not allowed in batch entity_types"):
+        MultimodalFeatureBatch(
+            as_of_ts=as_of,
+            tier=SubscriptionTier.DEVELOPER,
+            embedding_dim=32,
+            entity_types=[EntityType.MACRO],
+            items=[eq_item, mac_item],
+        )

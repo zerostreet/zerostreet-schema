@@ -9,7 +9,14 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from zerostreet_schema.enums import AllowedDataSource, SubscriptionTier, allowed_embedding_dims
+from zerostreet_schema.enums import (
+    AllowedDataSource,
+    EntityType,
+    SubscriptionTier,
+    allowed_embedding_dims,
+    infer_entity_type,
+    normalize_entity_type,
+)
 from zerostreet_schema.pit import PointInTimeError, assert_no_lookahead, ensure_timezone_aware
 
 
@@ -87,6 +94,10 @@ class AssetEmbeddingItem(BaseModel):
     """
 
     asset_id: str = Field(min_length=1, description="자산 식별자 (예: KRX:005930, US:SPY)")
+    entity_type: EntityType | None = Field(
+        default=None,
+        description="정보 처리 대상 객체 단위 (equity/index/macro/sector/futures)",
+    )
     event_ts: datetime | None = Field(default=None, description="사건 기준 시각")
     published_ts: datetime | None = Field(default=None, description="공시/발표 시각")
     available_ts: datetime = Field(description="모델 투입 가능 시각 (tz-aware)")
@@ -95,6 +106,13 @@ class AssetEmbeddingItem(BaseModel):
     )
     embedding_z_mm: list[float] = Field(default_factory=list, description="MRL 멀티모달 상태 텐서")
     source_data: SourceDataPayload = Field(default_factory=SourceDataPayload)
+
+    @field_validator("entity_type", mode="before")
+    @classmethod
+    def _normalize_item_entity_type(cls, value: EntityType | str | None) -> EntityType | None:
+        if value is None:
+            return None
+        return normalize_entity_type(value)
 
     @field_validator("embedding_z_mm")
     @classmethod
@@ -106,6 +124,8 @@ class AssetEmbeddingItem(BaseModel):
 
     @model_validator(mode="after")
     def _validate_pit_triad(self) -> "AssetEmbeddingItem":
+        if self.entity_type is None:
+            self.entity_type = infer_entity_type(self.asset_id)
         ensure_timezone_aware(self.available_ts, "available_ts")
         if self.published_ts is not None:
             ensure_timezone_aware(self.published_ts, "published_ts")
@@ -136,6 +156,10 @@ class MultimodalFeatureBatch(BaseModel):
     tier: SubscriptionTier = Field(description="구독 티어")
     embedding_model_version: str = Field(default="zs_mm_enc_v1_mrl", min_length=1)
     embedding_dim: int = Field(ge=0, description="요청 티어에 맞는 MRL 임베딩 차원 (0/32/128/256)")
+    entity_types: list[EntityType] = Field(
+        default_factory=list,
+        description="배치에 포함된 처리 대상 객체 단위 목록",
+    )
     items: list[AssetEmbeddingItem] = Field(default_factory=list)
 
     @model_validator(mode="after")
@@ -148,6 +172,18 @@ class MultimodalFeatureBatch(BaseModel):
                 f"Allowed: {sorted(allowed_dims)}."
             )
 
+        if self.entity_types:
+            deduped: list[EntityType] = []
+            for et in self.entity_types:
+                norm_et = normalize_entity_type(et)
+                if norm_et not in deduped:
+                    deduped.append(norm_et)
+            self.entity_types = deduped
+            allowed_units = set(self.entity_types)
+        else:
+            allowed_units = set()
+
+        inferred_units: list[EntityType] = []
         for item in self.items:
             assert_no_lookahead(item.available_ts, self.as_of_ts, asset_id=item.asset_id)
             for filing in item.source_data.public_filings:
@@ -159,4 +195,15 @@ class MultimodalFeatureBatch(BaseModel):
                     f"[{item.asset_id}] embedding_z_mm length ({len(item.embedding_z_mm)}) "
                     f"does not match embedding_dim ({self.embedding_dim})."
                 )
+            item_unit = item.entity_type or infer_entity_type(item.asset_id)
+            if allowed_units and item_unit not in allowed_units:
+                raise ValueError(
+                    f"[{item.asset_id}] entity_type={item_unit.value} is not allowed in batch "
+                    f"entity_types={[u.value for u in self.entity_types]}."
+                )
+            if item_unit not in inferred_units:
+                inferred_units.append(item_unit)
+
+        if not self.entity_types and inferred_units:
+            self.entity_types = inferred_units
         return self
