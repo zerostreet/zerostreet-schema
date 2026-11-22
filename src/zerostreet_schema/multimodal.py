@@ -1,6 +1,6 @@
-"""Model A to Model B multimodal embedding and compliant source schemas.
+"""ZeroLens to HyperAlpha-VLA multimodal embedding and compliant source schemas.
 
-Model A와 Model B 간 멀티모달 임베딩 및 적법 원천 데이터 스키마 모듈입니다.
+ZeroLens와 HyperAlpha-VLA 간 멀티모달 임베딩 및 적법 원천 데이터 스키마 모듈입니다.
 """
 
 import math
@@ -77,9 +77,9 @@ class AIExtractedFactsPayload(BaseModel):
 
 
 class SourceDataPayload(BaseModel):
-    """Cleaned source data payload delivered alongside Model A z_mm tensors.
+    """Cleaned source data payload delivered alongside ZeroLens z_mm tensors.
 
-    Model A가 z_mm 임베딩과 함께 제공하는 정제 원천 데이터 페이로드입니다.
+    ZeroLens가 z_mm 임베딩과 함께 제공하는 정제 원천 데이터 페이로드입니다.
     """
 
     public_filings: list[PublicFilingItem] = Field(default_factory=list)
@@ -154,7 +154,7 @@ class MultimodalFeatureBatch(BaseModel):
     schema_version: str = Field(default="1.0.0")
     as_of_ts: datetime = Field(description="추론 또는 백테스트 기준 시각 (tz-aware)")
     tier: SubscriptionTier = Field(description="구독 티어")
-    embedding_model_version: str = Field(default="zs_mm_enc_v1_mrl", min_length=1)
+    embedding_model_version: str = Field(default="zerolens_v2_mrl", min_length=1)
     embedding_dim: int = Field(ge=0, description="요청 티어에 맞는 MRL 임베딩 차원 (0/32/128/256)")
     entity_types: list[EntityType] = Field(
         default_factory=list,

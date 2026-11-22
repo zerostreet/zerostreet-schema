@@ -17,7 +17,7 @@ def test_run_trace_zero_trust_valid_and_blocks_secrets():
     trace = RunTrace(
         run_id="run_20261122_090500",
         policy_checkpoint_id="usr_ckpt_v4_cvar10",
-        multimodal_tensor_version="zs_mm_enc_v1_mrl",
+        multimodal_tensor_version="zerolens_v2_mrl",
         daemon_status=DaemonStatus.COMPLETED,
         positions_weights={"005930.KS": 0.25, "SPY": 0.45, "TLT": 0.30},
         target_vs_filled_diff_bps={"005930.KS": -1.2, "SPY": 0.4, "TLT": -0.8},
@@ -67,7 +67,7 @@ def test_thesis_manifest_v2_valid():
         run_trace_ref=RunTraceRef(
             run_id="run_20261122_090500",
             policy_checkpoint_id="usr_ckpt_v4_cvar10",
-            multimodal_tensor_version="zs_mm_enc_v1_mrl",
+            multimodal_tensor_version="zerolens_v2_mrl",
             target_weight_delta=0.045,
         ),
         source_facts_snapshot=SourceFactsSnapshot(

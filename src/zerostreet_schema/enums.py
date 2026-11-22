@@ -75,9 +75,9 @@ class HorizonMaskMode(StrEnum):
 
 
 class EntityType(StrEnum):
-    """First-class financial target unit processed by Model A and served via AlphaSmith.
+    """First-class financial target unit processed by ZeroLens and served via AlphaSmith.
 
-    Model A가 정보를 처리·압축하고 AlphaSmith가 서빙하는 금융 객체 단위 열거형입니다.
+    ZeroLens가 정보를 처리·압축하고 AlphaSmith가 서빙하는 금융 객체 단위 열거형입니다.
     """
 
     EQUITY = "equity"
