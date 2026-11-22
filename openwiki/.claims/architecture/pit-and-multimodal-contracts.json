@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:aaca98fd7447b4a3baae506c939b7022f0b507a34ee40993e1749b9908b0b7a1",
+  "pageVersion": "sha256:2bf0cfabe9bd622a8e386e71c8aacc92e5cca300c838135bee649bfa28756a7d",
   "claims": [
     {
       "id": "claim_58b0db4467d64b2d9ed47a77622e8b59",
@@ -32,7 +32,7 @@
         },
         {
           "resource": "repo://src/zerostreet_schema/multimodal.py#L90-L209",
-          "version": "repo-lines-v1:sha256:ef8ab931c55bf670e7d364c655f87f67a9074fac5c07157bd6f594aa491dca3d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmY2FlNmJmYjEzOTk0NTRhZTJjYzU1MTNlZTRkMGFmYWE4NGIxNDQwOTEwNTdmNjlkYTcwNjNjMjkzMGE4YTRmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhMmFiMDkwYmNkMTYyMGZhNjJlYWVlMTU3YTc0ZmNhNjM1YWEyOWUxMmNiZmZkNjE4YjU3OTJkODdiYzAzYTNmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4NjlkYjFkNTFmMmJmODBiZDcxNzgzZWQyODc0ZmEzNzdhYjQxMzYyNjc4Njc4ZWFlOGJhZDkxZmUzNDA1MDhhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+          "version": "repo-lines-v1:sha256:1b0f6d75eff383a37cfb3ecac12f53c8c63d984b0a7e7f2e6ec9a411275efda2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmY2FlNmJmYjEzOTk0NTRhZTJjYzU1MTNlZTRkMGFmYWE4NGIxNDQwOTEwNTdmNjlkYTcwNjNjMjkzMGE4YTRmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhMmFiMDkwYmNkMTYyMGZhNjJlYWVlMTU3YTc0ZmNhNjM1YWEyOWUxMmNiZmZkNjE4YjU3OTJkODdiYzAzYTNmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4NjlkYjFkNTFmMmJmODBiZDcxNzgzZWQyODc0ZmEzNzdhYjQxMzYyNjc4Njc4ZWFlOGJhZDkxZmUzNDA1MDhhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
         },
         {
           "resource": "repo://tests/test_multimodal.py#L84-L166",
@@ -43,6 +43,6 @@
   ],
   "verification": {
     "by": "openwiki/0.7.2",
-    "at": "2026-11-22T09:05:44.650Z"
+    "at": "2026-11-22T09:37:23.020Z"
   }
 }

@@ -9,20 +9,21 @@ tags:
   - contracts
   - business-context
   - zerolens
+  - zerosteer
 verified:
   - by: openwiki/0.7.2
-    at: 2026-11-22T09:05:44.650Z
+    at: 2026-11-22T09:37:23.020Z
 sources:
   - id: openwiki-source-05ccef8d4cf1698187f20464
     resource: repo://pyproject.toml
   - id: openwiki-source-ff9f237687ae6937ad228647
     resource: repo://src/zerostreet_schema/__init__.py
-generated: { by: "antigravity", at: "2026-11-22T09:05:44.650Z" }
+generated: { by: "antigravity", at: "2026-11-22T09:37:23.020Z" }
 ---
 
 # zerostreet-schema Quickstart & Business Overview / 빠른 시작 및 비즈니스 개요
 
-`zerostreet-schema` (`v0.1.0`, MIT) is the Layer 0 Pydantic v2 contract package shared across the entire **ZeroStreet (`주식회사 제로스트리트`)** stack (`zerostreet-models`, `hyperalpha-vla`, `alphagraph`, `alphasmith`, and `zerostreet-skills`).
+`zerostreet-schema` (`v0.1.0`, MIT) is the Layer 0 Pydantic v2 contract package shared across the entire **ZeroStreet (`주식회사 제로스트리트`)** stack (`zerostreet-models`, `zerosteer`, `alphagraph`, `alphasmith`, and `zerostreet-skills`).
 
 `zerostreet-schema` (`v0.1.0`, MIT)는 **ZeroStreet (`주식회사 제로스트리트`)** 생태계 전체가 공유하는 Layer 0 표준 Pydantic v2 데이터 계약 패키지입니다.
 
@@ -32,7 +33,7 @@ generated: { by: "antigravity", at: "2026-11-22T09:05:44.650Z" }
 
 ### English
 
-* **Universal Trust & Billing Boundary (Layer 0)**: Acts as the zero-weight open-source constitution connecting MIT client software (`alphagraph`, `hyperalpha-vla`, `zerostreet-skills`) to ZeroStreet's paid B2A cloud (`alphasmith`, `zerostreet-models`).
+* **Universal Trust & Billing Boundary (Layer 0)**: Acts as the zero-weight open-source constitution connecting MIT client software (`alphagraph`, `zerosteer`, `zerostreet-skills`) to ZeroStreet's paid B2A cloud (`alphasmith`, `zerostreet-models`).
 * **MRL Subscription Tier Monetization**: `SubscriptionTier` + `allowed_embedding_dims()` directly ties pricing tiers (`developer: 0/32d`, `sovereign_pro & founding_100: 0/32/128d`, `alpha_ultra: 0/32/128/256d`) to Matryoshka tensor dimensions, enabling tiered SaaS/B2A revenue over one upstream encoder.
 * **Regulatory & Custody Shield**: `PointInTimeStamp` prevents look-ahead leakage, `RLRewardWeights` requires user-supplied non-zero objectives (eliminating unlicensed advisory defaults), and `RunTrace` (`extra="forbid"`) blocks brokerage secrets from leaving local custody.
 
@@ -59,7 +60,7 @@ generated: { by: "antigravity", at: "2026-11-22T09:05:44.650Z" }
 | :--- | :--- | :--- |
 | `enums.py` | `SubscriptionTier`, `allowed_embedding_dims`, `AllowedDataSource`, `DaemonStatus`, `HorizonMaskMode`, `EntityType`, `normalize_entity_type`, `infer_entity_type`, `default_modalities_for_entity` | Tiers, lawful sources, processing units (`equity`/`index`/`macro`/`sector`/`futures`), daemon status, mask modes / 구독 티어, 적법 소스, 객체 단위, 데몬 상태 및 마스킹 |
 | `pit.py` | `PointInTimeError`, `PointInTimeStamp`, `ensure_timezone_aware`, `assert_no_lookahead`, `filter_pit_records` | Triple-timestamp look-ahead enforcement / 3중 타임스탬프 및 시점 누수 검증 |
-| `multimodal.py` | `PublicFilingItem`, `MacroContextPayload`, `AIExtractedFactsPayload`, `SourceDataPayload`, `AssetEmbeddingItem`, `MultimodalFeatureBatch` | `ZeroLens -> Model B` tensor (`zerolens_v2_mrl`), `entity_types`, and source contracts / 임베딩(`z_mm`), 객체 단위 목록 및 원천 데이터 계약 |
+| `multimodal.py` | `PublicFilingItem`, `MacroContextPayload`, `AIExtractedFactsPayload`, `SourceDataPayload`, `AssetEmbeddingItem`, `MultimodalFeatureBatch` | `ZeroLens -> ZeroSteer` tensor (`zerolens_v2_mrl`), `entity_types`, and source contracts / 임베딩(`z_mm`), 객체 단위 목록 및 원천 데이터 계약 |
 | `policy.py` | `RLRewardWeights`, `UserPolicyConfig`, `PolicyCompileRequest`, `PolicyCompileResult` | Custom Policy Head compile config & jobs / 개별 Policy Head 컴파일 요청/응답 |
 | `telemetry.py` | `FORBIDDEN_SECRET_FIELDS`, `RunTrace`, `KillCriterion`, `RunTraceRef`, `SourceFactsSnapshot`, `ThesisManifest` | Zero-trust execution trace & `alpha-wiki` manifest / 제로 트러스트 추적 및 매니페스트 |
 

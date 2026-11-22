@@ -10,9 +10,10 @@ tags:
   - pydantic-v2
   - opendart
   - zerolens
+  - zerosteer
 verified:
   - by: openwiki/0.7.2
-    at: 2026-11-22T09:05:44.650Z
+    at: 2026-11-22T09:37:23.020Z
 sources:
   - id: openwiki-source-8b0ea8a07e0fe75e78ef57fa
     resource: repo://src/zerostreet_schema/enums.py
@@ -22,14 +23,14 @@ sources:
     resource: repo://src/zerostreet_schema/pit.py
   - id: openwiki-source-b129baa120e443eb17822a58
     resource: repo://tests/test_multimodal.py
-generated: { by: "antigravity", at: "2026-11-22T09:05:44.650Z" }
+generated: { by: "antigravity", at: "2026-11-22T09:37:23.020Z" }
 ---
 
 # Point-in-Time Validation & Multimodal Contracts / Point-in-Time 검증 및 멀티모달 임베딩 계약
 
-`zerostreet-schema` defines the shared Pydantic v2 data contracts that block Look-Ahead Bias across the entire ZeroStreet stack and safely transport **ZeroLens** multimodal embeddings (`z_mm`, default `embedding_model_version="zerolens_v2_mrl"`) plus compliant source data from `zerostreet-models` / `AlphaSmith` into `HyperAlpha-VLA` (`Model B`) and `AlphaGraph`.
+`zerostreet-schema` defines the shared Pydantic v2 data contracts that block Look-Ahead Bias across the entire ZeroStreet stack and safely transport **ZeroLens** multimodal embeddings (`z_mm`, default `embedding_model_version="zerolens_v2_mrl"`) plus compliant source data from `zerostreet-models` / `AlphaSmith` into `ZeroSteer` and `AlphaGraph`.
 
-`zerostreet-schema`는 ZeroStreet 생태계 전체에서 미래 참조(Look-Ahead Bias)를 차단하고 `zerostreet-models` / `AlphaSmith`의 **ZeroLens**가 생성한 멀티모달 임베딩(`z_mm`, 기본 버전 `embedding_model_version="zerolens_v2_mrl"`)과 적법 원천 데이터를 `HyperAlpha-VLA`(`Model B`) 및 `AlphaGraph`로 안전하게 전달하기 위한 Pydantic v2 데이터 계약을 정의합니다.
+`zerostreet-schema`는 ZeroStreet 생태계 전체에서 미래 참조(Look-Ahead Bias)를 차단하고 `zerostreet-models` / `AlphaSmith`의 **ZeroLens**가 생성한 멀티모달 임베딩(`z_mm`, 기본 버전 `embedding_model_version="zerolens_v2_mrl"`)과 적법 원천 데이터를 `ZeroSteer` 및 `AlphaGraph`로 안전하게 전달하기 위한 Pydantic v2 데이터 계약을 정의합니다.
 
 ---
 
@@ -77,11 +78,11 @@ flowchart LR
     ITEMS --> PIT_FILING["Verify nested PublicFilingItem timestamps"]
     ITEMS --> BLACKOUT{"is_blackout flag"}
     BLACKOUT -- "False" --> DIM_CHK["Enforce len(z_mm) == embedding_dim and finite"]
-    BLACKOUT -- "True" --> PASS["Allow empty vector (Model B MASK_SIGNAL fallback)"]
+    BLACKOUT -- "True" --> PASS["Allow empty vector (ZeroSteer MASK_SIGNAL fallback)"]
 ```
 
 * **Entity-Type Normalization & Unit Consistency / 객체 단위 추론 및 일관성 검증**: `AssetEmbeddingItem` normalizes `entity_type` (including legacy aliases `"asset"` -> `"equity"`, `"market_index"` -> `"index"`) or infers it from `asset_id` prefix (`IDX:`, `MACRO:`/`FX:`, `SEC:`, `FUT:`), while `MultimodalFeatureBatch` defaults `embedding_model_version` to `"zerolens_v2_mrl"` and auto-populates or strictly validates `entity_types` across all items ([`multimodal.py`](../../src/zerostreet_schema/multimodal.py#L90-L209)). (`AssetEmbeddingItem`은 `entity_type` 별칭을 정규화하거나 심볼 접두어에서 자동 추론하며, `MultimodalFeatureBatch`는 기본 `embedding_model_version="zerolens_v2_mrl"`과 함께 배치 내 `entity_types` 일치 여부를 검증하거나 자동 집계합니다.)
-* **Blackout Resilience / 결측 안전성**: When `AssetEmbeddingItem.is_blackout=True`, an empty `embedding_z_mm` vector is accepted so `HyperAlpha-VLA`'s `DynamicEmbeddingAdapter` falls back to its learned `[MASK_SIGNAL]` token; when `is_blackout=False`, `MultimodalFeatureBatch` strictly enforces exact dimension length and `math.isfinite` on every scalar. (`is_blackout=True`이면 빈 벡터를 허용해 `Model B`가 `[MASK_SIGNAL]`로 대체하며, `False`이면 정확한 차원 일치와 유한 실수 여부를 검증합니다.)
+* **Blackout Resilience / 결측 안전성**: When `AssetEmbeddingItem.is_blackout=True`, an empty `embedding_z_mm` vector is accepted so `ZeroSteer`'s `DynamicEmbeddingAdapter` falls back to its learned `[MASK_SIGNAL]` token; when `is_blackout=False`, `MultimodalFeatureBatch` strictly enforces exact dimension length and `math.isfinite` on every scalar. (`is_blackout=True`이면 빈 벡터를 허용해 `ZeroSteer`가 `[MASK_SIGNAL]`로 대체하며, `False`이면 정확한 차원 일치와 유한 실수 여부를 검증합니다.)
 * **Recursive Disclosure Check / 중첩 공시 검증**: Validates both top-level `item.available_ts` and nested `PublicFilingItem` timestamps against `as_of_ts`. (상위 항목뿐 아니라 내부 `public_filings`의 공시 시각까지 `as_of_ts` 이전인지 재귀 검증합니다.)
 
 ---
